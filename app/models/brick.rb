@@ -3,12 +3,12 @@ class Brick < Engine::Model
   HEIGHT = 40
   PADDING = 5
 
-  def initialize(x, y)
+  def initialize(x, y, color: nil)
     @x = x
     @y = y
     @width = WIDTH
     @height = HEIGHT
-    @color = ColorPalette.default
-    @border = ColorPalette.background
+    @color = color || ColorPalette.foreground
+    @border = ColorPalette.line
   end
 end

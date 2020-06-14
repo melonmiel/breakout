@@ -9,7 +9,7 @@ class Paddle < Engine::Model
     @y = POSITION_Y
     @width = DEFAULT_WIDTH
     @height = DEFAULT_HEIGHT
-    @color = ColorPalette.default
+    @color = ColorPalette.foreground
 
     @speed = DEFAULT_SPEED
   end
