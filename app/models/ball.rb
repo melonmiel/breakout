@@ -1,2 +1,2 @@
-class Ball < Models::Base
+class Ball < Engine::Model
 end
