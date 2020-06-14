@@ -1,0 +1,6 @@
+devid=melonmiel
+devtitle=Melon Miel
+gameid=breakout
+gametitle=Breakout
+version=0.1
+icon=metadata/icon.png

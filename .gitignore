@@ -1,2 +1,3 @@
-logs/*
-tmp/*
+runtime/logs/*
+runtime/tmp/*
+runtime/console_history.txt
