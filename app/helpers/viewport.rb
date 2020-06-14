@@ -3,12 +3,12 @@ class Viewport
   HEIGHT = 720
 
   class << self
-    def xcenter(length)
-      (width - length) / 2
+    def xcenter(offset)
+      (width - offset) / 2
     end
 
-    def vcenter(length)
-      (height - length) / 2
+    def vcenter(offset)
+      (height - offset) / 2
     end
 
     def width
