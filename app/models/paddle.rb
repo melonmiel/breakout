@@ -3,14 +3,13 @@ class Paddle < Engine::Model
   DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10
   POSITION_Y = 15
-  COLOR = [255, 255, 255].freeze
 
   def initialize
     @x = Viewport.xcenter(DEFAULT_WIDTH)
     @y = POSITION_Y
     @width = DEFAULT_WIDTH
     @height = DEFAULT_HEIGHT
-    @color = COLOR
+    @color = ColorPalette.default
 
     @speed = DEFAULT_SPEED
   end

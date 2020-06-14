@@ -2,6 +2,7 @@ require "lib/core_ext/keyboard.rb"
 require "lib/engine/menu.rb"
 require "lib/engine/model.rb"
 
+require "app/assets/color_palette.rb"
 require "app/controllers/game_controller.rb"
 require "app/helpers/viewport.rb"
 require "app/layers/background_layer.rb"

@@ -1,6 +1,4 @@
 class MenuItem < Engine::Model
-  SELECTED_COLOR = [255, 0, 255].freeze
-  BLANK_COLOR = [255, 255, 255].freeze
   BLINK_SPEED = 2.5
 
   attr_accessor :label, :color, :selected
@@ -31,7 +29,7 @@ class MenuItem < Engine::Model
   end
 
   def set_color
-    @color = selected ? [*SELECTED_COLOR, alpha] : BLANK_COLOR
+    @color = selected ? [*ColorPalette.primary, alpha] : ColorPalette.default
   end
 
   def alpha
