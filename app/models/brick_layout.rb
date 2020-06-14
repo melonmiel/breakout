@@ -1,4 +1,4 @@
-class BrickLayout < Models::Base
+class BrickLayout < Engine::Model
   PADDING_TOP = 100
 
   attr_accessor :rows, :columns, :bricks

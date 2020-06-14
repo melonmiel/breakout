@@ -1,4 +1,4 @@
-class Paddle < Models::Base
+class Paddle < Engine::Model
   DEFAULT_WIDTH = 100
   DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10

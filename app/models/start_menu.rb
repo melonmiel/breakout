@@ -1,4 +1,4 @@
-class StartMenu < Models::Base
+class StartMenu < Engine::Model
   attr_accessor :alpha
 
   def initialize

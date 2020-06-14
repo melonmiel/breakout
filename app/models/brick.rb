@@ -1,4 +1,4 @@
-class Brick < Models::Base
+class Brick < Engine::Model
   WIDTH = 75
   HEIGHT = 40
   BRICK_COLOR = [255, 255, 255].freeze
