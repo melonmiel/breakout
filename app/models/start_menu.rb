@@ -1,4 +1,4 @@
-class StartMenu < Engine::Model
+class StartMenu < Engine::Menu
   attr_accessor :menu_items
 
   def initialize
@@ -19,7 +19,7 @@ class StartMenu < Engine::Model
   def tick
     start_game
     quit_game
-    cycle_menu_items
+    cycle(menu_items)
     menu_items.each(&:tick)
   end
 
@@ -33,33 +33,5 @@ class StartMenu < Engine::Model
     return unless quit_menu_item.selected? && $args.inputs.keyboard.key_down.enter
 
     exit
-  end
-
-  def cycle_menu_items
-    move_up
-    move_down
-  end
-
-  def move_up
-    return unless $args.inputs.keyboard.key_down.up
-
-    move(-1)
-  end
-
-  def move_down
-    return unless $args.inputs.keyboard.key_down.down
-
-    move(+1)
-  end
-
-  def move(offset)
-    selected_menu_item = menu_items.find(&:selected?)
-    next_item_index = menu_items.index(selected_menu_item) + offset
-
-    return if next_item_index < 0 || next_item_index >= menu_items.size
-
-    menu_items.each(&:unselect!)
-    next_item = menu_items[next_item_index]
-    next_item.select!
   end
 end
