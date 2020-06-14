@@ -37,7 +37,7 @@ class Paddle < Models::Base
 
   def move_left
     return unless can_move_left?
-    return unless $args.inputs.keyboard.key_down.left || $args.inputs.keyboard.key_held.left
+    return unless $args.inputs.keyboard.key_press(:left)
 
     @x -= @speed
     @x = left_edge if @x < left_edge
@@ -45,7 +45,7 @@ class Paddle < Models::Base
 
   def move_right
     return unless can_move_right?
-    return unless $args.inputs.keyboard.key_down.right || $args.inputs.keyboard.key_held.right
+    return unless $args.inputs.keyboard.key_press(:right)
 
     @x += @speed
     @x = right_edge if @x > right_edge
