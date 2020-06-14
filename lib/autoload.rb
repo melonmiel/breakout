@@ -1,0 +1,5 @@
+require "app/models/viewport.rb"
+require "app/controllers/game_controller.rb"
+require "app/screens/level.rb"
+require "app/templates/background.rb"
+require "app/templates/paddle.rb"
