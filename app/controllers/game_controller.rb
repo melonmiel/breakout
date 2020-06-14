@@ -18,6 +18,13 @@ class GameController
       end
     end
 
+    def reset!
+      @start_screen = nil
+      @level_screen = nil
+      @pause_screen = nil
+      $gtk.reset
+    end
+
     def start_screen
       @start_screen ||= StartScreen.new
     end

@@ -40,7 +40,7 @@ class PauseMenu < Engine::Menu
 
     resume_menu_item.select!
     back_to_main_menu_item.unselect!
-    $gtk.reset
+    GameController.reset!
   end
 
   def quit_game
