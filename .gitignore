@@ -1,3 +1,4 @@
+runtime/console_history.txt
+runtime/exceptions/*
 runtime/logs/*
 runtime/tmp/*
-runtime/console_history.txt
