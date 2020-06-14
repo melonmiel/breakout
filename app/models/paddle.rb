@@ -40,7 +40,7 @@ class Paddle < Models::Base
     return unless $args.inputs.keyboard.key_down.left || $args.inputs.keyboard.key_held.left
 
     @x -= @speed
-    @x = 0 if @x < 0
+    @x = left_edge if @x < left_edge
   end
 
   def move_right
@@ -48,14 +48,22 @@ class Paddle < Models::Base
     return unless $args.inputs.keyboard.key_down.right || $args.inputs.keyboard.key_held.right
 
     @x += @speed
-    @x = (Viewport.width - length) if @x > (Viewport.width - length)
+    @x = right_edge if @x > right_edge
   end
 
   def can_move_left?
-    @x != 0
+    @x > left_edge
   end
 
   def can_move_right?
-    @x != (Viewport.width - length)
+    @x < right_edge
+  end
+
+  def left_edge
+    0
+  end
+
+  def right_edge
+    Viewport.width - length
   end
 end
