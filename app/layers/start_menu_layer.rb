@@ -1,7 +1,9 @@
 class StartMenuLayer
   class << self
     def render(start_menu)
-      $args.outputs.labels << [Viewport.xcenter(0), Viewport.vcenter(0), "Press space to start game", 18, 1, 255, 255, 255, start_menu.alpha]
+      start_menu.menu_items.each do |menu_item|
+        $args.outputs.labels << [Viewport.xcenter(0), menu_item.y, menu_item.label, 16, 1, *menu_item.color]
+      end
     end
   end
 end
