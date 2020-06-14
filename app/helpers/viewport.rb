@@ -14,5 +14,21 @@ class Viewport
     def height
       HEIGHT
     end
+
+    def left
+      0
+    end
+
+    def right
+      WIDTH
+    end
+
+    def bottom
+      0
+    end
+
+    def top
+      HEIGHT
+    end
   end
 end
