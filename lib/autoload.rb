@@ -1,3 +1,5 @@
+require "lib/core_ext/keyboard.rb"
+
 require "app/controllers/game_controller.rb"
 require "app/helpers/viewport.rb"
 require "app/layers/background_layer.rb"
