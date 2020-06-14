@@ -29,7 +29,7 @@ class MenuItem < Engine::Model
   end
 
   def set_color
-    @color = selected ? [*ColorPalette.purple, alpha] : ColorPalette.text
+    @color = selected ? [*ColorPalette.cyan, alpha] : ColorPalette.text
   end
 
   def alpha
