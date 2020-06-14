@@ -1,15 +1,15 @@
 class Paddle < Models::Base
-  DEFAULT_LENGTH = 100
+  DEFAULT_WIDTH = 100
+  DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10
-  PADDLE_HEIGHT = 10
   POSITION_Y = 15
   COLOR = [255, 255, 255].freeze
 
   def initialize
-    @length = DEFAULT_LENGTH
-    @x = Viewport.center(length)
+    @x = Viewport.center(DEFAULT_WIDTH)
     @y = POSITION_Y
-    @height = PADDLE_HEIGHT
+    @width = DEFAULT_WIDTH
+    @height = DEFAULT_HEIGHT
     @color = COLOR
 
     @speed = DEFAULT_SPEED
@@ -64,6 +64,6 @@ class Paddle < Models::Base
   end
 
   def right_edge
-    Viewport.width - length
+    Viewport.width - width
   end
 end
