@@ -1,11 +1,9 @@
-class Paddle
+class Paddle < Models::Base
   DEFAULT_LENGTH = 100
   DEFAULT_SPEED = 10
   PADDLE_HEIGHT = 10
   POSITION_Y = 15
   COLOR = [255, 255, 255].freeze
-
-  attr_accessor :x, :y, :length, :height, :color
 
   def initialize
     @length = DEFAULT_LENGTH
@@ -25,7 +23,7 @@ class Paddle
   private
 
   def accelerate
-    if $engine.keyboard.key_held.left || $engine.keyboard.key_held.right
+    if $args.inputs.keyboard.key_held.left || $args.inputs.keyboard.key_held.right
       @speed += 0.5
     else
       @speed = DEFAULT_SPEED
@@ -39,7 +37,7 @@ class Paddle
 
   def move_left
     return unless can_move_left?
-    return unless $engine.keyboard.key_down.left || $engine.keyboard.key_held.left
+    return unless $args.inputs.keyboard.key_down.left || $args.inputs.keyboard.key_held.left
 
     @x -= @speed
     @x = 0 if @x < 0
@@ -47,7 +45,7 @@ class Paddle
 
   def move_right
     return unless can_move_right?
-    return unless $engine.keyboard.key_down.right || $engine.keyboard.key_held.right
+    return unless $args.inputs.keyboard.key_down.right || $args.inputs.keyboard.key_held.right
 
     @x += @speed
     @x = (Viewport.width - length) if @x > (Viewport.width - length)
@@ -61,5 +59,3 @@ class Paddle
     @x != (Viewport.width - length)
   end
 end
-
-$paddle = Paddle.new
