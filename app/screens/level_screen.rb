@@ -1,11 +1,11 @@
 class LevelScreen
-  attr_accessor :ball, :paddle, :bricks
+  attr_accessor :ball, :paddle, :brick_layout
   attr_accessor :args
 
   def initialize
     @ball = Ball.new
     @paddle = Paddle.new
-    @bricks = []
+    @brick_layout = BrickLayout.new(rows: 6, columns: 14)
   end
 
   def tick
@@ -15,7 +15,7 @@ class LevelScreen
   def render
     BackgroundLayer.render()
     BallLayer.render(ball)
-    BricksLayer.render(bricks)
+    BricksLayer.render(brick_layout)
     PaddleLayer.render(paddle)
   end
 end
