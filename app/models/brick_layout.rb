@@ -20,7 +20,7 @@ class BrickLayout < Models::Base
   end
 
   def left_edge
-    @left_edge ||= Viewport.center(columns * Brick::WIDTH)
+    @left_edge ||= Viewport.xcenter(columns * Brick::WIDTH)
   end
 
   def top_edge

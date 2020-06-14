@@ -6,7 +6,7 @@ class Paddle < Models::Base
   COLOR = [255, 255, 255].freeze
 
   def initialize
-    @x = Viewport.center(DEFAULT_WIDTH)
+    @x = Viewport.xcenter(DEFAULT_WIDTH)
     @y = POSITION_Y
     @width = DEFAULT_WIDTH
     @height = DEFAULT_HEIGHT

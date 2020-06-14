@@ -6,11 +6,16 @@ class GameController
     end
 
     def screen
-      if $args.state.paused
-        # TODO: PauseScreen
-      else
+      case $args.state.screen
+      when :level
         level_screen
+      else
+        start_screen
       end
+    end
+
+    def start_screen
+      @start_screen ||= StartScreen.new
     end
 
     def level_screen
