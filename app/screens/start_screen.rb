@@ -12,6 +12,6 @@ class StartScreen
   def render
     BackgroundLayer.render
     GameTitleLayer.render
-    StartMenuLayer.render(start_menu)
+    MenuLayer.render(start_menu)
   end
 end

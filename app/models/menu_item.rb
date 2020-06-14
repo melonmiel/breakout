@@ -5,9 +5,10 @@ class MenuItem < Engine::Model
 
   attr_accessor :label, :color, :selected
 
-  def initialize(label, y: 0, selected: false)
+  def initialize(label, x: nil, y: nil, selected: false)
     @label = label
-    @y = y
+    @x = x || Viewport.xcenter(0)
+    @y = y || 0
     @selected = selected
     @color = set_color
     @fade = :in

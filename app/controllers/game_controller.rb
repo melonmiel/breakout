@@ -7,8 +7,12 @@ class GameController
 
     def screen
       case $args.state.screen
+      when :pause
+        pause_screen
       when :level
         level_screen
+      when :start
+        start_screen
       else
         start_screen
       end
@@ -20,6 +24,10 @@ class GameController
 
     def level_screen
       @level_screen ||= LevelScreen.new
+    end
+
+    def pause_screen
+      @pause_screen ||= PauseScreen.new
     end
   end
 end
