@@ -5,48 +5,51 @@ class Paddle
   POSITION_Y = 15
   COLOR = [255, 255, 255].freeze
 
-  attr_accessor :x, :length, :speed
+  attr_accessor :x, :y, :length, :height, :color
 
   def initialize
     @length = DEFAULT_LENGTH
-    @speed = DEFAULT_SPEED
     @x = Viewport.center(length)
+    @y = POSITION_Y
+    @height = PADDLE_HEIGHT
+    @color = COLOR
+
+    @speed = DEFAULT_SPEED
   end
 
-  def render(args)
-    accelerate(args)
-    move(args)
-    [x, POSITION_Y, length, PADDLE_HEIGHT, *COLOR]
+  def tick
+    accelerate
+    move
   end
 
   private
 
-  def accelerate(args)
-    if args.inputs.keyboard.key_held.left || args.inputs.keyboard.key_held.right
+  def accelerate
+    if $engine.keyboard.key_held.left || $engine.keyboard.key_held.right
       @speed += 0.5
     else
       @speed = DEFAULT_SPEED
     end
   end
 
-  def move(args)
-    move_left(args)
-    move_right(args)
+  def move
+    move_left
+    move_right
   end
 
-  def move_left(args)
+  def move_left
     return unless can_move_left?
-    return unless args.inputs.keyboard.key_down.left || args.inputs.keyboard.key_held.left
+    return unless $engine.keyboard.key_down.left || $engine.keyboard.key_held.left
 
-    @x -= speed
+    @x -= @speed
     @x = 0 if @x < 0
   end
 
-  def move_right(args)
+  def move_right
     return unless can_move_right?
-    return unless args.inputs.keyboard.key_down.right || args.inputs.keyboard.key_held.right
+    return unless $engine.keyboard.key_down.right || $engine.keyboard.key_held.right
 
-    @x += speed
+    @x += @speed
     @x = (Viewport.width - length) if @x > (Viewport.width - length)
   end
 
@@ -56,12 +59,6 @@ class Paddle
 
   def can_move_right?
     @x != (Viewport.width - length)
-  end
-
-  class << self
-    def render(args)
-      args.outputs.solids << $paddle.render(args)
-    end
   end
 end
 

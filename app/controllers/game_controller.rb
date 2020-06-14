@@ -1,13 +1,14 @@
 class GameController
-  attr_accessor :args
-
-  def tick(args)
-    @args = args
-
-    screen.render(args)
+  def tick
+    screen.tick
+    screen.render
   end
 
   def screen
-    Level
+    if $engine.state.paused
+      # TODO: PauseScreen
+    else
+      LevelScreen
+    end
   end
 end
