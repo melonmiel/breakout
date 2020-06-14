@@ -9,6 +9,6 @@ class Brick < Engine::Model
     @width = WIDTH
     @height = HEIGHT
     @color = color || ColorPalette.foreground
-    @border = ColorPalette.line
+    @border = ColorPalette.background
   end
 end
