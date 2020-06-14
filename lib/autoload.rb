@@ -1,6 +1,5 @@
-require "lib/viewport.rb"
-
 require "app/controllers/game_controller.rb"
+require "app/helpers/viewport.rb"
 require "app/layers/background_layer.rb"
 require "app/layers/ball_layer.rb"
 require "app/layers/bricks_layer.rb"
