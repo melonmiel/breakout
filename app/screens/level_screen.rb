@@ -1,6 +1,5 @@
 class LevelScreen
   attr_accessor :ball, :paddle, :brick_layout
-  attr_accessor :args
 
   def initialize
     @ball = Ball.new
