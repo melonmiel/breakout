@@ -9,18 +9,17 @@ class StartMenu < Engine::Menu
   end
 
   def new_game_menu_item
-    @new_game_menu_item ||= MenuItem.new("NEW GAME", y: Viewport.vcenter(0), selected: true)
+    @new_game_menu_item ||= MenuItem.new("NEW GAME", y: Viewport.vcenter(50), selected: true)
   end
 
   def quit_menu_item
-    @quit_menu_item ||= MenuItem.new("QUIT", y: Viewport.vcenter(150))
+    @quit_menu_item ||= MenuItem.new("QUIT", y: Viewport.vcenter(200))
   end
 
   def tick
     start_game
     quit_game
     cycle(menu_items)
-    menu_items.each(&:tick)
   end
 
   def start_game

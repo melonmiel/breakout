@@ -26,7 +26,6 @@ class PauseMenu < Engine::Menu
     back_to_main_menu
     quit_game
     cycle(menu_items)
-    menu_items.each(&:tick)
   end
 
   def resume_game
