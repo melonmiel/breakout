@@ -32,45 +32,20 @@ class ColorPalette
   STEEL_PINK = [201, 58, 192];
   FROSTBITE = [240, 48, 163];
 
-  def background(variant = :default)
-    case variant
-    when :default
-      DRACULA_BACKGROUND
-    when :paper
-      [*DRACULA_BACKGROUND, 0.54]
-    else
-      raise ArgumentError, "Unknown variant '#{variant}'"
-    end
+  def background
+    DRACULA_BACKGROUND
   end
 
-  def foreground(variant = :primary)
-    case variant
-    when :primary
-      DRACULA_FOREGROUND
-    when :secondary
-      [*DRACULA_FOREGROUND, 0.7]
-    when :disabled
-      [*DRACULA_FOREGROUND, 0.5]
-    else
-      raise ArgumentError, "Unknown variant '#{variant}'"
-    end
+  def foreground
+    DRACULA_FOREGROUND
   end
 
-  def text(variant = :primary)
-    case variant
-    when :primary
-      DRACULA_FOREGROUND
-    when :secondary
-      [*DRACULA_FOREGROUND, 0.7]
-    when :disabled
-      [*DRACULA_FOREGROUND, 0.5]
-    else
-      raise ArgumentError, "Unknown variant '#{variant}'"
-    end
+  def text
+    DRACULA_FOREGROUND
   end
 
   def line
-    DRACULA_LINE
+    [*DRACULA_LINE, 255]
   end
 
   def cyan(variant = :primary)
