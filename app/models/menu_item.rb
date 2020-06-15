@@ -3,6 +3,8 @@ class MenuItem < Engine::Model
 
   attr_accessor :label, :selected
 
+  alias :selected? :selected
+
   def initialize(label, x: nil, y: nil, selected: false)
     @label = label
     @x = x || Viewport.xcenter(0)
@@ -20,21 +22,15 @@ class MenuItem < Engine::Model
     @selected = false
   end
 
-  def selected?
-    selected
-  end
-
   def color
     @color = selected ? ColorPalette.cyan : ColorPalette.text
   end
 
   def alpha
-    if selected
-      @fade = @fade == :in ? :out : :in if blink_gauge == 0
-      @alpha = 255 - (@fade == :out ? blink_gauge : 100-blink_gauge)
-    else
-      @alpha = 255
-    end
+    return 255 unless selected
+
+    @fade = @fade == :in ? :out : :in if blink_gauge == 0
+    255 - (@fade == :out ? blink_gauge : 100-blink_gauge)
   end
 
   def blink_gauge
