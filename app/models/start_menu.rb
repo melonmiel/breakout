@@ -25,6 +25,7 @@ class StartMenu < Engine::Menu
   def start_game
     return unless new_game_menu_item.selected? && $args.inputs.keyboard.key_down.enter
 
+    $args.outputs.sounds << "app/assets/sounds/start-game.wav"
     $args.state.screen = :level
   end
 

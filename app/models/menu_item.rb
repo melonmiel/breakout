@@ -1,21 +1,23 @@
 class MenuItem < Engine::Model
   BLINK_SPEED = 2.5
 
-  attr_accessor :label, :selected
+  attr_accessor :label, :selected, :on_select
 
   alias :selected? :selected
 
-  def initialize(label, x: nil, y: nil, selected: false)
+  def initialize(label, x: nil, y: nil, selected: false, on_select: nil)
     @label = label
     @x = x || Viewport.xcenter(0)
     @y = y || 0
     @font = "app/assets/fonts/VerminVibes1989Regular.ttf"
     @selected = selected
     @fade = :in
+    @on_select = on_select || Proc.new { $args.outputs.sounds << "app/assets/sounds/select.wav" }
   end
 
   def select!
     @selected = true
+    on_select.call
   end
 
   def unselect!

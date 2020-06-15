@@ -31,6 +31,7 @@ class PauseMenu < Engine::Menu
   def resume_game
     return unless resume_menu_item.selected? && $args.inputs.keyboard.key_down.enter
 
+    $args.outputs.sounds << "app/assets/sounds/resume.wav"
     $args.state.screen = :level
   end
 

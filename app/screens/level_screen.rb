@@ -24,6 +24,7 @@ class LevelScreen
   def pause_game
     return unless $args.inputs.keyboard.key_down.escape
 
+    $args.outputs.sounds << "app/assets/sounds/pause.wav"
     $args.state.screen = :pause
   end
 end
