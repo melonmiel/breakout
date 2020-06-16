@@ -9,6 +9,11 @@ class BrickLayout < Engine::Model
     @bricks = setup_bricks
   end
 
+  def render
+    bricks.each(&:render)
+    bricks.reject!(&:exploded?)
+  end
+
   def setup_bricks
     columns.times.flat_map do |column|
       rows.times.map do |row|
