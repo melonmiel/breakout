@@ -22,6 +22,12 @@ class StartMenu < Engine::Menu
     cycle(menu_items)
   end
 
+  def render
+    menu_items.each do |menu_item|
+      $args.outputs.labels << [Viewport.xcenter(0), menu_item.y, menu_item.label, 16, 1, *menu_item.color, menu_item.alpha, menu_item.font]
+    end
+  end
+
   def start_game
     return unless new_game_menu_item.selected? && $args.inputs.keyboard.key_down.enter
 

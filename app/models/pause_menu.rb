@@ -28,6 +28,12 @@ class PauseMenu < Engine::Menu
     cycle(menu_items)
   end
 
+  def render
+    menu_items.each do |menu_item|
+      $args.outputs.labels << [Viewport.xcenter(0), menu_item.y, menu_item.label, 16, 1, *menu_item.color, menu_item.alpha, menu_item.font]
+    end
+  end
+
   def resume_game
     return unless resume_menu_item.selected? && $args.inputs.keyboard.key_down.enter
 

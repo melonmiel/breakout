@@ -1,17 +1,17 @@
 class PauseScreen
-  attr_accessor :pause_screen
+  attr_accessor :pause_menu
 
   def initialize
-    @pause_screen = PauseMenu.new
+    @pause_menu = PauseMenu.new
   end
 
   def tick
-    pause_screen.tick
+    pause_menu.tick
   end
 
   def render
     BackgroundLayer.render
     GameTitleLayer.render
-    MenuLayer.render(pause_screen)
+    pause_menu.render
   end
 end
