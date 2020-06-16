@@ -32,44 +32,14 @@ class Ball < Engine::Model
   end
 
   def next_move
-    next_self = self.clone
-    next_self.move
-    next_self
+    self.clone.move!
   end
 
   private
 
-  def move
+  def move!
     @x += @horizontal_speed
     @y += @vertical_speed
-  end
-
-  def collide
-    bounce_off(direction: :horizontal) if collide_horizontally
-    bounce_off(direction: :vertical) if collide_vertically
-  end
-
-  def collide_horizontally
-    @x >= right_edge || @x <= left_edge
-  end
-
-  def collide_vertically
-    @y >= top_edge || @y <= bottom_edge
-  end
-
-  def bottom_edge
-    0
-  end
-
-  def left_edge
-    0
-  end
-
-  def top_edge
-    Viewport.height - height
-  end
-
-  def right_edge
-    Viewport.width - width
+    self
   end
 end

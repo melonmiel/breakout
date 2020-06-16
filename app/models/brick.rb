@@ -3,6 +3,9 @@ class Brick < Engine::Model
   HEIGHT = 40
   PADDING = 5
 
+  attr_accessor :exploded
+  alias :exploded? :exploded
+
   def initialize(x, y, color: nil)
     @x = x
     @y = y
@@ -10,9 +13,19 @@ class Brick < Engine::Model
     @height = HEIGHT
     @color = color || ColorPalette.foreground
     @border = ColorPalette.background
+    @exploded = false
   end
 
   def explode!
-    # TODO: Add Sound FX
+    @exploded = true
+  end
+
+  def render
+    if exploded?
+      $args.outputs.sounds << "app/assets/sounds/blip.wav"
+    else
+      $args.outputs.solids << [x, y, width, height, *color]
+      $args.outputs.borders << [x, y, width, height, *border]
+    end
   end
 end
