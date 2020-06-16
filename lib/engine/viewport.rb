@@ -20,19 +20,19 @@ class Viewport
     end
 
     def left
-      0
+      @left ||= Engine::Model.new(x: 0, y: 0, width: 0, height: height)
     end
 
     def right
-      WIDTH
+      @right ||= Engine::Model.new(x: width, y: 0, width: 0, height: height)
     end
 
     def bottom
-      0
+      @bottom ||= Engine::Model.new(x: 0, y: 0, width: width, height: 0)
     end
 
     def top
-      HEIGHT
+      @top ||= Engine::Model.new(x: 0, y: height, width: width, height: 0)
     end
   end
 end
