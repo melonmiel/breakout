@@ -20,6 +20,13 @@ class BrickLayout < Engine::Model
     end
   end
 
+  def delete_brick(exploded_brick)
+    @bricks.reject! do |brick|
+      brick.x == exploded_brick.x &&
+        brick.y == exploded_brick.y
+    end
+  end
+
   def colors
     [
       ColorPalette.magenta,

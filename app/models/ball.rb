@@ -19,6 +19,21 @@ class Ball < Engine::Model
     collide
   end
 
+  def bounce_off(direction:)
+    case direction
+    when :vertical
+      @vertical_speed = -@vertical_speed
+    when :horizontal
+      @horizontal_speed = -@horizontal_speed
+    end
+  end
+
+  def next_move
+    next_self = self.clone
+    next_self.move
+    next_self
+  end
+
   private
 
   def move
@@ -27,8 +42,8 @@ class Ball < Engine::Model
   end
 
   def collide
-    @horizontal_speed = -@horizontal_speed if collide_horizontally
-    @vertical_speed = -@vertical_speed if collide_vertically
+    bounce_off(direction: :horizontal) if collide_horizontally
+    bounce_off(direction: :vertical) if collide_vertically
   end
 
   def collide_horizontally
