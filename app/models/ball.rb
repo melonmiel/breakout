@@ -15,8 +15,11 @@ class Ball < Engine::Model
   end
 
   def tick
-    move
-    collide
+    move!
+  end
+
+  def render
+    $args.outputs.solids << [x, y, width, height, *color]
   end
 
   def bounce_off(direction:)
