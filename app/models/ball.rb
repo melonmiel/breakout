@@ -16,7 +16,7 @@ class Ball < Engine::Model
 
   def tick
     move
-    colide
+    collide
   end
 
   private
@@ -26,16 +26,16 @@ class Ball < Engine::Model
     @y += @vertical_speed
   end
 
-  def colide
-    @horizontal_speed = -@horizontal_speed if colide_horizontally
-    @vertical_speed = -@vertical_speed if colide_vertically
+  def collide
+    @horizontal_speed = -@horizontal_speed if collide_horizontally
+    @vertical_speed = -@vertical_speed if collide_vertically
   end
 
-  def colide_horizontally
+  def collide_horizontally
     @x >= right_edge || @x <= left_edge
   end
 
-  def colide_vertically
+  def collide_vertically
     @y >= top_edge || @y <= bottom_edge
   end
 
