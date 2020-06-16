@@ -19,6 +19,10 @@ class Paddle < Engine::Model
     move
   end
 
+  def render
+    $args.outputs.solids << [x, y, width, height, *color]
+  end
+
   private
 
   def accelerate
