@@ -14,21 +14,21 @@ class LevelScreen
     paddle.tick
     ball.tick
 
-    on_collision(ball.next_move, [paddle]) do
-      ball.bounce_off(direction: :vertical)
+    on_collision(ball.next_ball, [paddle]) do
+      ball.bounce_off(paddle)
     end
 
-    on_collision(ball.next_move, brick_layout.bricks) do |brick|
+    on_collision(ball.next_ball, brick_layout.bricks) do |brick|
       brick.explode!
-      ball.bounce_off(direction: :vertical)
+      ball.bounce_off(brick)
     end
 
-    on_collision(ball, [Viewport.left, Viewport.right]) do
-      ball.bounce_off(direction: :horizontal)
+    on_collision(ball.next_ball, [Viewport.left, Viewport.right]) do |edge|
+      ball.bounce_off(edge)
     end
 
-    on_collision(ball, [Viewport.top]) do
-      ball.bounce_off(direction: :vertical)
+    on_collision(ball.next_ball, [Viewport.top]) do |edge|
+      ball.bounce_off(edge)
     end
 
     on_collision(ball, [Viewport.bottom]) do
