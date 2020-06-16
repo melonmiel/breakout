@@ -10,6 +10,7 @@ class LevelScreen
   def tick
     pause_game
     paddle.tick
+    ball.tick
   end
 
   def render
