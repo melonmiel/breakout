@@ -11,4 +11,8 @@ class Brick < Engine::Model
     @color = color || ColorPalette.foreground
     @border = ColorPalette.background
   end
+
+  def explode!
+    # TODO: Add Sound FX
+  end
 end

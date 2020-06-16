@@ -1,4 +1,5 @@
 require "lib/core_ext/keyboard.rb"
+require "lib/engine/collision.rb"
 require "lib/engine/menu.rb"
 require "lib/engine/model.rb"
 
