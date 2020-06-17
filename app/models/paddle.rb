@@ -1,5 +1,7 @@
 class Paddle < Engine::Model
-  DEFAULT_WIDTH = 100
+  # DEFAULT_WIDTH = 200 # Easy mode
+  DEFAULT_WIDTH = 150 # Normal mode
+  # DEFAULT_WIDTH = 100 # Difficult mode
   DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10
   POSITION_Y = 15
