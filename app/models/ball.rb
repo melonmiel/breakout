@@ -15,31 +15,48 @@ class Ball < Engine::Model
   end
 
   def tick
-    move!
+    travel!
   end
 
   def render
     $args.outputs.solids << [x, y, width, height, *color]
   end
 
-  def bounce_off(direction:)
-    case direction
-    when :vertical
-      @vertical_speed = -@vertical_speed
-    when :horizontal
-      @horizontal_speed = -@horizontal_speed
-    end
+  def bounce_off(object)
+    bounce_horizontally if self.clone.travel_horizontally!.intersect_with?(object)
+    bounce_vertically if self.clone.travel_vertically!.intersect_with?(object)
   end
 
-  def next_move
-    self.clone.move!
+  def next_ball
+    self.clone.travel!
   end
 
   private
 
-  def move!
+  def bounce_horizontally
+    @horizontal_speed = -@horizontal_speed
+  end
+
+  def bounce_vertically
+    @vertical_speed = -@vertical_speed
+  end
+
+  def travel!
+    travel_horizontally!
+    travel_vertically!
+  end
+
+  def travel_horizontally!
     @x += @horizontal_speed
+    self
+  end
+
+  def travel_vertically!
     @y += @vertical_speed
     self
+  end
+
+  def intersect_with?(object)
+    GTK::Geometry.intersect_rect?(rect, object.rect)
   end
 end
