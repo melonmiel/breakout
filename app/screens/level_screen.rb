@@ -1,4 +1,4 @@
-class LevelScreen
+class LevelScreen < Engine::Screen
   include Engine::Collision
 
   attr_accessor :ball, :paddle, :brick_layout
@@ -10,7 +10,7 @@ class LevelScreen
   end
 
   def tick
-    pause_game
+    on_key(:escape) { pause_game }
     paddle.tick
     ball.tick
 
@@ -32,7 +32,7 @@ class LevelScreen
     end
 
     on_collision(ball, [Viewport.bottom]) do
-      die
+      $args.state.screen = :death
     end
   end
 
@@ -46,13 +46,7 @@ class LevelScreen
   private
 
   def pause_game
-    return unless $args.inputs.keyboard.key_down.escape
-
     $args.outputs.sounds << "app/assets/sounds/pause.wav"
     $args.state.screen = :pause
-  end
-
-  def die
-    GameController.reset!
   end
 end
