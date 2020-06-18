@@ -6,10 +6,12 @@ class Viewport
     def xcenter(offset)
       (width - offset) / 2
     end
+    alias :hcenter :xcenter
 
-    def vcenter(offset)
+    def ycenter(offset)
       (height - offset) / 2
     end
+    alias :vcenter :ycenter
 
     def width
       WIDTH
