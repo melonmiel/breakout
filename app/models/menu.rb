@@ -1,5 +1,5 @@
 class Menu
-  include Engine::Interaction
+  include Engine::Input
 
   attr_accessor :options, :margin, :offset
 
