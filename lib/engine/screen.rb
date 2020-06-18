@@ -1,5 +1,5 @@
 module Engine
   class Screen
-    include Interaction
+    include Input
   end
 end
