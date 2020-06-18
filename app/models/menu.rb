@@ -3,7 +3,7 @@ class Menu
 
   attr_accessor :options, :margin, :offset
 
-  def initialize(margin: 200, offset: 0)
+  def initialize(margin: 150, offset: 0)
     @options = []
     @margin = margin
     @offset = offset
