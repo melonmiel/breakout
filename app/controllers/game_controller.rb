@@ -13,6 +13,8 @@ class GameController
         level_screen
       when :start
         start_screen
+      when :death
+        death_screen
       else
         start_screen
       end
@@ -22,7 +24,12 @@ class GameController
       @start_screen = nil
       @level_screen = nil
       @pause_screen = nil
+      @death_screen = nil
       $gtk.reset
+    end
+
+    def reset_level!
+      @level_screen = nil
     end
 
     def start_screen
@@ -35,6 +42,10 @@ class GameController
 
     def pause_screen
       @pause_screen ||= PauseScreen.new
+    end
+
+    def death_screen
+      @death_screen ||= DeathScreen.new
     end
   end
 end

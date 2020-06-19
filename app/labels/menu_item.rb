@@ -9,7 +9,7 @@ class MenuItem < Engine::Label
     @x = args.fetch(:x, Viewport.xcenter(0))
     @y = args.fetch(:y, Viewport.ycenter(-400))
     @text = args.fetch(:text)
-    @size = args.fetch(:size, 28)
+    @size = args.fetch(:size, 18)
     @alignment = args.fetch(:alignment, 1)
     @font = args.fetch(:font, "app/assets/fonts/VerminVibes1989Regular.ttf")
 
