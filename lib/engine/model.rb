@@ -20,5 +20,29 @@ module Engine
     def rect
       [x, y, width, height]
     end
+
+    def left
+      x
+    end
+
+    def right
+      x + width
+    end
+
+    def top
+      y + height
+    end
+
+    def bottom
+      y
+    end
+
+    def outside?(container)
+      !container.contains?(self)
+    end
+
+    def beyond?(edge)
+      !edge.contains?(self)
+    end
   end
 end
