@@ -9,6 +9,7 @@ require "lib/engine/viewport.rb"
 
 require "app/assets/color_palette.rb"
 require "app/controllers/game_controller.rb"
+require "app/effects/ossilator.rb"
 require "app/labels/header.rb"
 require "app/labels/menu_item.rb"
 require "app/layers/background_layer.rb"

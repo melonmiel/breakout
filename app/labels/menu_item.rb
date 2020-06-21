@@ -1,6 +1,4 @@
 class MenuItem < Engine::Label
-  BLINK_SPEED = 2.5
-
   attr_accessor :selected, :on_select
 
   alias :selected? :selected
@@ -32,13 +30,12 @@ class MenuItem < Engine::Label
   end
 
   def alpha
-    return 255 unless selected
-
-    @fade = @fade == :in ? :out : :in if blink_gauge == 0
-    255 - (@fade == :out ? blink_gauge : 100-blink_gauge)
+    selected? ? ossilator.value : 255
   end
 
-  def blink_gauge
-    ($args.tick_count * BLINK_SPEED) % 100
+  private
+
+  def ossilator
+    @ossilator ||= Effects::Ossilator.new(range: (150..255), interval: 5)
   end
 end
