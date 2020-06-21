@@ -5,6 +5,7 @@ require "lib/engine/input.rb"
 require "lib/engine/label.rb"
 require "lib/engine/model.rb"
 require "lib/engine/screen.rb"
+require "lib/engine/settings.rb"
 require "lib/engine/viewport.rb"
 
 require "app/assets/color_palette.rb"
