@@ -5,5 +5,11 @@ module Engine
 
       yield if block_given?
     end
+
+    def on_keys(*keys, &block)
+      keys.each do |key|
+        on_key(key, &block)
+      end
+    end
   end
 end
