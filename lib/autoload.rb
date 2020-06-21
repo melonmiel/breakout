@@ -12,6 +12,7 @@ require "lib/engine/viewport.rb"
 
 # Depends on Model
 require "lib/engine/container.rb"
+require "lib/engine/edge.rb"
 
 require "app/assets/color_palette.rb"
 require "app/controllers/game_controller.rb"
