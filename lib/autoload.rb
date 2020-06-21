@@ -10,6 +10,9 @@ require "lib/engine/screen.rb"
 require "lib/engine/settings.rb"
 require "lib/engine/viewport.rb"
 
+# Depends on Model
+require "lib/engine/container.rb"
+
 require "app/assets/color_palette.rb"
 require "app/controllers/game_controller.rb"
 require "app/effects/ossilator.rb"
