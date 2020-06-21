@@ -13,6 +13,7 @@ class Menu
     on_key(:up) { move_cursor(-1) }
     on_key(:down) { move_cursor(+1) }
     on_key(:enter) { selected_option.on_select.call }
+    options.each(&:tick)
   end
 
   def render
@@ -20,9 +21,19 @@ class Menu
   end
 
   def add_option(label, &block)
-    y = Viewport.ycenter - offset - options.length * margin
-    selected = (options.length == 0)
-    option = MenuItem.new(text: label, y: y, selected: selected, on_select: block)
+    args = {}
+    args[:y] = Viewport.ycenter - (offset + options.length * margin)
+    args[:selected] = (options.length == 0)
+    args[:on_select] = block
+    args[:text] = label
+    option = Option.new(args)
+    options << option
+  end
+
+  def add_toggle(key, args = {})
+    args[:y] ||= Viewport.ycenter - (offset + options.length * margin)
+    args[:selected] ||= (options.length == 0)
+    option = Toggle.new(key, args)
     options << option
   end
 

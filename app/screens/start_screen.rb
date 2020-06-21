@@ -22,6 +22,10 @@ class StartScreen < Engine::Screen
         $args.outputs.sounds << "app/assets/sounds/start-game.wav" if Settings.enabled?(:sound)
         $args.state.screen = :level
       end
+      menu.add_option("SETTINGS") do
+        $args.state.back = :start
+        $args.state.screen = :settings
+      end
       menu.add_option("QUIT") { exit }
       menu
     end
