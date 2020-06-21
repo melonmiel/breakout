@@ -4,8 +4,8 @@ class MenuItem < Engine::Label
   alias :selected? :selected
 
   def initialize(args = {}, &block)
-    @x = args.fetch(:x, Viewport.xcenter(0))
-    @y = args.fetch(:y, Viewport.ycenter(-400))
+    @x = args.fetch(:x, Viewport.xcenter)
+    @y = args.fetch(:y, (Viewport.ycenter + 200))
     @text = args.fetch(:text)
     @size = args.fetch(:size, 18)
     @alignment = args.fetch(:alignment, 1)

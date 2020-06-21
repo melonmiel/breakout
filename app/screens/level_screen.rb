@@ -24,14 +24,14 @@ class LevelScreen < Engine::Screen
     end
 
     on_collision(ball.next_ball, [Viewport.left, Viewport.right]) do |edge|
-      ball.bounce_off(edge)
+      ball.bounce_horizontally
     end
 
     on_collision(ball.next_ball, [Viewport.top]) do |edge|
-      ball.bounce_off(edge)
+      ball.bounce_vertically
     end
 
-    on_collision(ball, [Viewport.bottom]) do
+    on_collision(ball.next_ball, [Viewport.bottom]) do
       $args.state.screen = :death
     end
   end
