@@ -38,5 +38,12 @@ class Menu
     options.each(&:unselect!)
     next_item = options[next_item_index]
     next_item.select!
+    play_sound
+  end
+
+  def play_sound
+    return unless Settings.enabled?(:sound)
+
+    $args.outputs.sounds << "app/assets/sounds/select.wav"
   end
 end
