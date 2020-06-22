@@ -8,19 +8,15 @@ module Engine
     end
 
     def on_edge_collision(source, edge, &block)
-      return if edge.contains?(source)
+      return unless source.beyond?(edge)
 
       yield(edge)
     end
 
-    def on_solid_collision(source, destination, &block)
-      return unless collides?(source, destination)
+    def on_solid_collision(source, solid, &block)
+      return unless source.collides?(solid)
 
-      yield(destination)
-    end
-
-    def collides?(source, destination)
-      GTK::Geometry.intersect_rect?(source.rect, destination.rect)
+      yield(solid)
     end
   end
 end

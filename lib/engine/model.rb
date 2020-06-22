@@ -44,5 +44,9 @@ module Engine
     def beyond?(edge)
       !edge.contains?(self)
     end
+
+    def collides?(destination)
+      GTK::Geometry.intersect_rect?(rect, destination.rect)
+    end
   end
 end

@@ -31,7 +31,7 @@ class LevelScreen < Engine::Screen
       ball.bounce_vertically
     end
 
-    on_collision(ball.next_ball, [Viewport.bottom]) do
+    on_collision(ball, [Viewport.bottom]) do
       $args.state.screen = :death
     end
   end
