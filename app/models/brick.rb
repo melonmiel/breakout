@@ -1,10 +1,12 @@
 class Brick < Engine::Model
+  include State
+
   WIDTH = 75
   HEIGHT = 40
   PADDING = 5
 
-  attr_accessor :exploded
-  alias :exploded? :exploded
+  state Idle, events: [:explode]
+  # events :explode
 
   def initialize(x, y, color: nil)
     @x = x
@@ -16,16 +18,21 @@ class Brick < Engine::Model
     @exploded = false
   end
 
-  def explode!
-    @exploded = true
-  end
+  class Idle < State
+    on_event :explode, transition_to: Exploding
 
-  def render
-    if exploded?
-      $args.outputs.sounds << "app/assets/sounds/blip.wav"
-    else
-      $args.outputs.solids << [x, y, width, height, *color]
-      $args.outputs.borders << [x, y, width, height, *border]
+    def render
+      $args.outputs.solids << [@parent.x, @parent.y, @parent.width, @parent.height, *@parent.color]
+      $args.outputs.borders << [@parent.x, @parent.y, @parent.width, @parent.height, *@parent.border]
     end
   end
+
+  class Exploding < State
+    include Sound
+
+    on_enter { play_sound "app/assets/sounds/blip.wav" }
+    on_tick { transition_to Exploded }
+  end
+
+  class Exploded < State; end
 end
