@@ -22,15 +22,6 @@ module Engine
       $args.outputs.lines << [x, y, x2, y2, *color, alpha].compact
     end
 
-    def rect
-      [
-        (x < x2 ? x : x2),
-        (y < y2 ? y : y2),
-        width,
-        height,
-      ]
-    end
-
     def width
       (x2-x).abs
     end
