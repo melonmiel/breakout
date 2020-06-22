@@ -17,7 +17,7 @@ class DeathScreen < Engine::Screen
     @menu ||= begin
       menu = Menu.new
       menu.add_option("RETRY") do
-        $args.outputs.sounds << "app/assets/sounds/resume.wav"
+        $args.outputs.sounds << "app/assets/sounds/resume.wav" if Settings.enabled?(:sound)
         $args.state.screen = :level
         GameController.reset_level!
       end

@@ -19,7 +19,7 @@ class StartScreen < Engine::Screen
     @menu ||= begin
       menu = Menu.new
       menu.add_option("NEW GAME") do
-        $args.outputs.sounds << "app/assets/sounds/start-game.wav"
+        $args.outputs.sounds << "app/assets/sounds/start-game.wav" if Settings.enabled?(:sound)
         $args.state.screen = :level
       end
       menu.add_option("QUIT") { exit }

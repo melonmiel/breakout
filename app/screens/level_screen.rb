@@ -46,7 +46,7 @@ class LevelScreen < Engine::Screen
   private
 
   def pause_game
-    $args.outputs.sounds << "app/assets/sounds/pause.wav"
+    $args.outputs.sounds << "app/assets/sounds/pause.wav" if Settings.enabled?(:sound)
     $args.state.screen = :pause
   end
 end

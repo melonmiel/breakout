@@ -22,7 +22,7 @@ class Brick < Engine::Model
 
   def render
     if exploded?
-      $args.outputs.sounds << "app/assets/sounds/blip.wav"
+      $args.outputs.sounds << "app/assets/sounds/blip.wav" if Settings.enabled?(:sound)
     else
       $args.outputs.solids << [x, y, width, height, *color]
       $args.outputs.borders << [x, y, width, height, *border]
