@@ -8,7 +8,7 @@ module Engine
     end
 
     def on_edge_collision(source, edge, &block)
-      return unless outside?(source, edge)
+      return if edge.contains?(source)
 
       yield(edge)
     end
@@ -21,20 +21,6 @@ module Engine
 
     def collides?(source, destination)
       GTK::Geometry.intersect_rect?(source.rect, destination.rect)
-    end
-
-    def outside?(source, edge)
-      if edge.is_a? Engine::Edge::Left
-        source.x < edge.x
-      elsif edge.is_a? Engine::Edge::Right
-        (source.x + source.width) > edge.x
-      elsif edge.is_a? Engine::Edge::Top
-        (source.y + source.height) > edge.y
-      elsif edge.is_a? Engine::Edge::Bottom
-        source.y < edge.y
-      else
-        false
-      end
     end
   end
 end
