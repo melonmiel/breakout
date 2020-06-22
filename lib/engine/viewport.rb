@@ -1,11 +1,15 @@
-class Viewport
+class Viewport < Engine::Container
+  def initialize
+    super(x: 0, y: 0, width: 1280, height: 720)
+  end
+
   class << self
-    def _container
-      @_container ||= Engine::Container.new(x: 0, y: 0, width: 1280, height: 720)
+    def instance
+      @instance ||= new
     end
 
     def method_missing(method)
-      _container.send(method)
+      instance.send(method)
     end
   end
 end
