@@ -18,6 +18,8 @@ class Menu
       @ossilate = args.fetch(:ossilate, true)
     end
 
+    def tick; end
+
     def select!
       @selected = true
     end
