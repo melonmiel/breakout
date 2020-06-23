@@ -23,12 +23,12 @@ class LevelScreen < Engine::Screen
       ball.bounce_off(brick)
     end
 
-    on_collision(ball.next_ball, [Viewport.left, Viewport.right]) do |edge|
-      ball.bounce_off(edge)
+    on_collision(ball.next_ball, [Viewport.left, Viewport.right]) do
+      ball.bounce_horizontally
     end
 
-    on_collision(ball.next_ball, [Viewport.top]) do |edge|
-      ball.bounce_off(edge)
+    on_collision(ball.next_ball, [Viewport.top]) do
+      ball.bounce_vertically
     end
 
     on_collision(ball, [Viewport.bottom]) do

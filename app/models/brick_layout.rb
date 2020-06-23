@@ -37,7 +37,7 @@ class BrickLayout < Engine::Model
   end
 
   def left_edge
-    @left_edge ||= Viewport.xcenter(columns * Brick::WIDTH)
+    @left_edge ||= Viewport.xcenter - (columns * Brick::WIDTH / 2)
   end
 
   def top_edge

@@ -1,15 +1,24 @@
 require "lib/core_ext/keyboard.rb"
 require "lib/core_ext/string.rb"
+
+# Extensions
 require "lib/engine/action.rb"
-require "lib/engine/collision.rb"
 require "lib/engine/input.rb"
+require "lib/engine/collision.rb"
+
+# Core Objects
 require "lib/engine/label.rb"
 require "lib/engine/line.rb"
 require "lib/engine/model.rb"
 require "lib/engine/screen.rb"
+
+# Helpers
+require "lib/engine/container.rb"
+require "lib/engine/edge.rb"
 require "lib/engine/settings.rb"
 require "lib/engine/viewport.rb"
 
+# Application
 require "app/assets/color_palette.rb"
 require "app/controllers/game_controller.rb"
 require "app/effects/ossilator.rb"

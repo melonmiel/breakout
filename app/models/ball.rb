@@ -4,7 +4,7 @@ class Ball < Engine::Model
   POSITION_Y = 25
 
   def initialize
-    @x = Viewport.xcenter(DEFAULT_SIZE)
+    @x = Viewport.xcenter
     @y = POSITION_Y
     @width = DEFAULT_SIZE
     @height = DEFAULT_SIZE
@@ -31,8 +31,6 @@ class Ball < Engine::Model
     self.clone.travel!
   end
 
-  private
-
   def bounce_horizontally
     @horizontal_speed = -@horizontal_speed
   end
@@ -40,6 +38,8 @@ class Ball < Engine::Model
   def bounce_vertically
     @vertical_speed = -@vertical_speed
   end
+
+  private
 
   def travel!
     travel_horizontally!

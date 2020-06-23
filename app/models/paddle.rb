@@ -7,7 +7,7 @@ class Paddle < Engine::Model
   POSITION_Y = 15
 
   def initialize
-    @x = Viewport.xcenter(DEFAULT_WIDTH)
+    @x = Viewport.xcenter - (DEFAULT_WIDTH / 2)
     @y = POSITION_Y
     @width = DEFAULT_WIDTH
     @height = DEFAULT_HEIGHT

@@ -1,7 +1,7 @@
 class Header < Engine::Label
   def initialize(args = {})
-    @x = args.fetch(:x, Viewport.xcenter(0))
-    @y = args.fetch(:y, Viewport.vcenter(-400))
+    @x = args.fetch(:x, Viewport.xcenter)
+    @y = args.fetch(:y, (Viewport.ycenter + 200))
     @text = args.fetch(:text)
     @size = args.fetch(:size, 48)
     @alignment = args.fetch(:alignment, 1)

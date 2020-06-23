@@ -3,7 +3,7 @@ class Menu
 
   attr_accessor :options, :margin, :offset
 
-  def initialize(margin: 150, offset: 0)
+  def initialize(margin: 75, offset: 0)
     @options = []
     @margin = margin
     @offset = offset
@@ -20,7 +20,7 @@ class Menu
   end
 
   def add_option(label, &block)
-    y = Viewport.vcenter(offset + options.length * margin)
+    y = Viewport.ycenter - offset - options.length * margin
     selected = (options.length == 0)
     option = MenuItem.new(text: label, y: y, selected: selected, on_select: block)
     options << option
