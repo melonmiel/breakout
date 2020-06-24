@@ -1,11 +1,11 @@
 module Engine
   module Assets
-    def font_path(fontname)
-      "app/assets/fonts/#{fontname}.ttf"
+    def font_path(filename)
+      "app/assets/fonts/#{filename}"
     end
 
     def sound_path(filename)
-      "app/assets/sounds/#{filename}.wav"
+      "app/assets/sounds/#{filename}"
     end
 
     def play_sound(reference)
