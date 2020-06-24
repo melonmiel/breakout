@@ -1,4 +1,10 @@
 class StartScreen < Engine::Screen
+  include Engine::Assets
+
+  def initialize
+    $args.outputs.sounds << sound_path("start.ogg") if Settings.enabled?(:music)
+  end
+
   def tick
     menu.tick
   end

@@ -7,6 +7,8 @@ class LevelScreen < Engine::Screen
     @ball = Ball.new
     @paddle = Paddle.new
     @brick_layout = BrickLayout.new(rows: 6, columns: 14)
+
+    $args.outputs.sounds << sound_path("level.ogg") if Settings.enabled?(:music)
   end
 
   def tick
