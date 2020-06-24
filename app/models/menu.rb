@@ -1,49 +1,53 @@
 class Menu
+  include Engine::Assets
   include Engine::Input
 
   attr_accessor :options, :margin, :offset
 
-  def initialize(margin: 75, offset: 0)
-    @options = []
+  def initialize(margin: 75, offset: 0, &block)
+    @options = List.new
     @margin = margin
     @offset = offset
+
+    setup_options(&block)
+  end
+
+  def setup_options(&block)
+    yield(self)
   end
 
   def tick
-    on_key(:up) { move_cursor(-1) }
-    on_key(:down) { move_cursor(+1) }
-    on_key(:enter) { selected_option.on_select.call }
+    on_key(:up) do
+      options.previous
+      play_sound(:select) if Settings.enabled?(:sound)
+    end
+    on_key(:down) do
+      options.next
+      play_sound(:select) if Settings.enabled?(:sound)
+    end
+    options.each(&:tick)
   end
 
   def render
     options.each(&:render)
   end
 
-  def add_option(label, &block)
-    y = Viewport.ycenter - offset - options.length * margin
-    selected = (options.length == 0)
-    option = MenuItem.new(text: label, y: y, selected: selected, on_select: block)
+  def add_option(args = {}, &block)
+    args = default_option_args.merge(args)
+    option = Option.new(args, &block)
     options << option
   end
 
-  def selected_option
-    options.find(&:selected?)
+  def add_setting(setting, args = {}, &block)
+    args = default_option_args.merge(args)
+    option = Setting.new(setting, args, &block)
+    options << option
   end
 
-  def move_cursor(offset)
-    next_item_index = options.index(selected_option) + offset
-
-    return if next_item_index < 0 || next_item_index >= options.length
-
-    options.each(&:unselect!)
-    next_item = options[next_item_index]
-    next_item.select!
-    play_sound
-  end
-
-  def play_sound
-    return unless Settings.enabled?(:sound)
-
-    $args.outputs.sounds << "app/assets/sounds/select.wav"
+  def default_option_args
+    {
+      y: (Viewport.ycenter - (offset + options.length * margin)),
+      selected: (options.length == 0),
+    }
   end
 end

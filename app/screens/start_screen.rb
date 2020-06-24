@@ -22,14 +22,16 @@ class StartScreen < Engine::Screen
   end
 
   def menu
-    @menu ||= begin
-      menu = Menu.new
-      menu.add_option("NEW GAME") do
+    @menu ||= Menu.new do |menu|
+      menu.add_option(text: "NEW GAME", selected: true) do
         $args.outputs.sounds << "app/assets/sounds/start-game.wav" if Settings.enabled?(:sound)
         $args.state.screen = :level
       end
-      menu.add_option("QUIT") { exit }
-      menu
+      menu.add_option(text: "SETTINGS") do
+        $args.state.back = :start
+        $args.state.screen = :settings
+      end
+      menu.add_option(text: "QUIT") { exit }
     end
   end
 end
