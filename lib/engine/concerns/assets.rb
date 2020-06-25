@@ -17,11 +17,11 @@ module Engine
     end
 
     def play_music(song)
-      $args.outputs.sounds << sound_path(song)
+      $args.outputs.sounds << song_path(song)
     end
 
     def stop_music
-      $args.outputs.sounds << sound_path("silence.ogg")
+      $args.outputs.sounds << song_path("silence.ogg")
     end
   end
 end

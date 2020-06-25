@@ -1,4 +1,5 @@
 class LevelScreen < Engine::Screen
+  include Engine::Assets
   include Engine::Collision
 
   attr_accessor :ball, :paddle, :brick_layout
@@ -8,7 +9,7 @@ class LevelScreen < Engine::Screen
     @paddle = Paddle.new
     @brick_layout = BrickLayout.new(rows: 6, columns: 14)
 
-    $args.outputs.sounds << sound_path("level.ogg") if Settings.enabled?(:music)
+    $args.outputs.sounds << song_path(Settings.enabled?(:music) ? "level.ogg" : "silence.ogg")
   end
 
   def tick

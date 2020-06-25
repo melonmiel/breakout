@@ -2,7 +2,7 @@ class StartScreen < Engine::Screen
   include Engine::Assets
 
   def initialize
-    $args.outputs.sounds << sound_path("start.ogg") if Settings.enabled?(:music)
+    $args.outputs.sounds << song_path(Settings.enabled?(:music) ? "start.ogg" : "silence.ogg")
   end
 
   def tick
