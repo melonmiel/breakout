@@ -16,7 +16,7 @@ module Engine
       $args.outputs.sounds << sound_path(sound)
     end
 
-    def play_music(song)
+    def play_song(song)
       $args.outputs.sounds << song_path(song)
     end
 
