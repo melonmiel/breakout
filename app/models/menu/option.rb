@@ -20,6 +20,7 @@ class Menu
       @selected = args.fetch(:selected, false)
       @ossilate = args.fetch(:ossilate, true)
       @on_enter = on_enter || Proc.new { }
+      @on_select = args[:on_select] || Proc.new { }
     end
 
     def tick

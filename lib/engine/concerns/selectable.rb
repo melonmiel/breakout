@@ -1,6 +1,6 @@
 module Engine
   module Selectable
-    attr_accessor :selected
+    attr_accessor :selected, :on_select
 
     def select!
       @selected = true
