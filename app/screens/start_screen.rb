@@ -1,4 +1,10 @@
 class StartScreen < Engine::Screen
+  include Engine::Assets
+
+  def initialize
+    play_song("start.ogg") if Settings.enabled?(:music)
+  end
+
   def tick
     menu.tick
   end

@@ -1,4 +1,5 @@
 class LevelScreen < Engine::Screen
+  include Engine::Assets
   include Engine::Collision
 
   attr_accessor :ball, :paddle, :brick_layout
@@ -7,6 +8,8 @@ class LevelScreen < Engine::Screen
     @ball = Ball.new
     @paddle = Paddle.new
     @brick_layout = BrickLayout.new(rows: 6, columns: 14)
+
+    play_song("level.ogg") if Settings.enabled?(:music)
   end
 
   def tick
