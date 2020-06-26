@@ -5,6 +5,9 @@ require "lib/core_ext/string.rb"
 require "lib/engine/input.rb"
 require "lib/engine/collision.rb"
 
+# Modules
+require "lib/engine/concerns/assets.rb"
+
 # Core Objects
 require "lib/engine/label.rb"
 require "lib/engine/line.rb"
