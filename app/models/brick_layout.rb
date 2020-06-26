@@ -17,7 +17,7 @@ class BrickLayout < Engine::Model
   def setup_bricks
     columns.times.flat_map do |column|
       rows.times.map do |row|
-        color = colors[row] || ColorPalette.green
+        color = colors[row] || Colors.green
         x = left_edge + (column * Brick::WIDTH)
         y = top_edge - (row * Brick::HEIGHT)
         Brick.new(x, y, color: color)
@@ -27,12 +27,12 @@ class BrickLayout < Engine::Model
 
   def colors
     [
-      ColorPalette.magenta,
-      ColorPalette.pink(:primary),
-      ColorPalette.pink(:secondary),
-      ColorPalette.red,
-      ColorPalette.cyan(:secondary),
-      ColorPalette.cyan(:primary),
+      Colors.magenta,
+      Colors.pink(:primary),
+      Colors.pink(:secondary),
+      Colors.red,
+      Colors.cyan(:secondary),
+      Colors.cyan(:primary),
     ]
   end
 

@@ -37,9 +37,9 @@ class Menu
       args = args.merge(y: y, size: size, font: font)
       args[:x] ||= container.right.x
       args[:alignment] ||= 2
-      args[:color] ||= ColorPalette.text
+      args[:color] ||= Colors.text
       args[:value] ||= value
-      args[:selected] ||= Settings.current?(setting, value)
+      args[:selected] ||= Engine::Settings.current?(setting, value)
       args[:ossilate] ||= false
       args[:on_select] ||= on_select || Proc.new { }
       options << Option.new(args, &cycle)
@@ -48,8 +48,8 @@ class Menu
     def cycle(offset = +1)
       Proc.new do
         options.cycle(offset)
-        Settings.set(setting, options.current.value)
-        play_sound(:select) if Settings.enabled?(:sound)
+        Engine::Settings.set!(setting, options.current.value)
+        play_sound("select.wav") if Engine::Settings.enabled?(:sound)
         options.current.on_select.call
       end
     end

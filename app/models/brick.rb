@@ -11,8 +11,8 @@ class Brick < Engine::Model
     @y = y
     @width = WIDTH
     @height = HEIGHT
-    @color = color || ColorPalette.foreground
-    @border = ColorPalette.background
+    @color = color || Colors.foreground
+    @border = Colors.background
     @exploded = false
   end
 
@@ -22,7 +22,7 @@ class Brick < Engine::Model
 
   def render
     if exploded?
-      $args.outputs.sounds << "app/assets/sounds/blip.wav" if Settings.enabled?(:sound)
+      play_sound("blip.wav") if Engine::Settings.enabled?(:sound)
     else
       $args.outputs.solids << [x, y, width, height, *color]
       $args.outputs.borders << [x, y, width, height, *border]

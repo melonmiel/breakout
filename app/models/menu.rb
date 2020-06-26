@@ -19,11 +19,11 @@ class Menu
   def tick
     on_key(:up) do
       options.previous
-      play_sound(:select) if Settings.enabled?(:sound)
+      play_sound("select.wav") if Engine::Settings.enabled?(:sound)
     end
     on_key(:down) do
       options.next
-      play_sound(:select) if Settings.enabled?(:sound)
+      play_sound("select.wav") if Engine::Settings.enabled?(:sound)
     end
     options.each(&:tick)
   end

@@ -1,4 +1,4 @@
-module Engine
+class Engine
   class Model
     attr_accessor :x, :y, :width, :height, :color, :border, :alpha, :font
 

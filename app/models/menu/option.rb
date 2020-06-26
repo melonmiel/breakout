@@ -30,7 +30,7 @@ class Menu
     end
 
     def color
-      @color || (selected? ? ColorPalette.cyan : ColorPalette.text)
+      @color || (selected? ? Colors.cyan : Colors.text)
     end
 
     def alpha

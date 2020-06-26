@@ -1,4 +1,4 @@
-module Engine
+class Engine
   class Label
     attr_accessor :x, :y, :text, :size, :alignment, :color, :alpha, :font
 

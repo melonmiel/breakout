@@ -1,50 +1,62 @@
-module Engine
-  class Settings
+class Engine
+  module Settings
     class << self
-      def add_setting(key, default)
-        settings[key] = default
+      def enable(key)
+        set(key, true)
       end
 
-      def enable(key)
-        settings[key] = true
+      def enable!(key)
+        set!(key, true)
       end
 
       def disable(key)
-        settings[key] = false
+        set(key, false)
+      end
+
+      def disable!(key)
+        set!(key, false)
       end
 
       def toggle(key)
-        settings[key] = !settings[key]
+        set(key, !get(key))
       end
 
-      def enabled?(key)
-        settings[key]
-      end
-
-      def disabled?(key)
-        !settings[key]
-      end
-
-      def get(key)
-        settings[key]
+      def toggle!(key)
+        set!(key, !get(key))
       end
 
       def set(key, value)
-        settings[key] = value
+        raise ArgumentError, "Can't serialize symbols. Considering using strings instead." if value.is_a?(Symbol)
+
+        state.send("#{key}=", value)
+      end
+
+      def set!(key, value)
+        set(key, value)
+        Engine.save
+      end
+
+      def enabled?(key)
+        get(key)
+      end
+
+      def disabled?(key)
+        !get(key)
+      end
+
+      def get(key)
+        state.send(key)
       end
 
       def current?(key, value)
-        settings[key] == value
+        get(key) == value
       end
 
       private
 
-      def settings
-        $args.state.settings
+      def state
+        $args.state
       end
     end
   end
 end
-
-# Initialize Settings
-$args&.state&.settings = {}
