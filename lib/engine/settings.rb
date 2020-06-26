@@ -25,6 +25,18 @@ module Engine
         !settings[key]
       end
 
+      def get(key)
+        settings[key]
+      end
+
+      def set(key, value)
+        settings[key] = value
+      end
+
+      def current?(key, value)
+        settings[key] == value
+      end
+
       private
 
       def settings

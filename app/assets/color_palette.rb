@@ -4,7 +4,7 @@ class ColorPalette
   PUMPKIN = [255, 121, 38].freeze
   AMARANTH = [234, 32, 86].freeze
   # PURPLE = [80, 22, 188].freeze
-  TRYPAN_BLUE = [45, 17, 173].freeze
+  # TRYPAN_BLUE = [45, 17, 173].freeze
 
   # https://coolors.co/f72585-7209b7-3a0ca3-4361ee-4cc9f0
   FLICKR_PINK = [247, 37, 133].freeze

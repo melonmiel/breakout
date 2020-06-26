@@ -1,15 +1,11 @@
 class Paddle < Engine::Model
-  # DEFAULT_WIDTH = 200 # Easy mode
-  DEFAULT_WIDTH = 150 # Normal mode
-  # DEFAULT_WIDTH = 100 # Difficult mode
   DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10
   POSITION_Y = 15
 
   def initialize
-    @x = Viewport.xcenter - (DEFAULT_WIDTH / 2)
+    @x = Viewport.xcenter - (width / 2)
     @y = POSITION_Y
-    @width = DEFAULT_WIDTH
     @height = DEFAULT_HEIGHT
     @color = ColorPalette.foreground
 
@@ -70,5 +66,17 @@ class Paddle < Engine::Model
 
   def right_edge
     Viewport.width - width
+  end
+
+  def width
+    @width ||= begin
+      case Settings.get(:difficulty)
+      when :easy then 200
+      when :normal then 150
+      when :hard then 100
+      else
+        150
+      end
+    end
   end
 end
