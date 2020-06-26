@@ -2,7 +2,7 @@ class StartScreen < Engine::Screen
   include Engine::Assets
 
   def initialize
-    play_song(Settings.enabled?(:music) ? "start.ogg" : "silence.ogg")
+    play_song("start.ogg") if Settings.enabled?(:music)
   end
 
   def tick

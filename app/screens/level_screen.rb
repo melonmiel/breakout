@@ -9,7 +9,7 @@ class LevelScreen < Engine::Screen
     @paddle = Paddle.new
     @brick_layout = BrickLayout.new(rows: 6, columns: 14)
 
-    play_song(Settings.enabled?(:music) ? "level.ogg" : "silence.ogg")
+    play_song("level.ogg") if Settings.enabled?(:music)
   end
 
   def tick
