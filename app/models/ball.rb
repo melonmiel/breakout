@@ -2,6 +2,7 @@ class Ball < Engine::Model
   DEFAULT_SIZE = 10
   DEFAULT_SPEED = 10
   POSITION_Y = 25
+  RANDOMNESS = 0.1
 
   def initialize
     @x = Viewport.xcenter
@@ -32,11 +33,11 @@ class Ball < Engine::Model
   end
 
   def bounce_horizontally
-    @horizontal_speed = -@horizontal_speed
+    @horizontal_speed = reverse(@horizontal_speed)
   end
 
   def bounce_vertically
-    @vertical_speed = -@vertical_speed
+    @vertical_speed = reverse(@vertical_speed)
   end
 
   private
@@ -56,7 +57,18 @@ class Ball < Engine::Model
     self
   end
 
+  def reverse(speed)
+    speed = speed > 0 ? -DEFAULT_SPEED : DEFAULT_SPEED
+    speed * angle_randomness_factor
+  end
+
   def intersect_with?(object)
     GTK::Geometry.intersect_rect?(rect, object.rect)
+  end
+
+  def angle_randomness_factor
+    factor = rand * RANDOMNESS
+    factor = -factor if factor > (RANDOMNESS / 2)
+    1 + factor
   end
 end
