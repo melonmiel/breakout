@@ -35,4 +35,4 @@ module Engine
 end
 
 # Initialize Settings
-$args.state.settings = {}
+$args&.state&.settings = {}
