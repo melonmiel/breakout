@@ -1,4 +1,5 @@
 require "lib/core_ext/keyboard.rb"
+require "lib/core_ext/list.rb"
 require "lib/core_ext/string.rb"
 
 # Extensions
