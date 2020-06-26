@@ -21,7 +21,7 @@ module Engine
     end
 
     def stop_music
-      $args.outputs.sounds << song_path("silence.ogg")
+      $gtk.stop_music
     end
   end
 end
