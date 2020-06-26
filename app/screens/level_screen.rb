@@ -10,10 +10,15 @@ class LevelScreen < Engine::Screen
     @brick_layout = BrickLayout.new(rows: 6, columns: 14)
 
     play_song("level.ogg") if Settings.enabled?(:music)
+    $args.state.paused = false
   end
 
   def tick
-    on_key(:escape) { pause_game }
+    on_key(:space) { pause_game }
+    on_keys(:escape, :enter) { level_menu }
+
+    return if $args.state.paused
+
     paddle.tick
     ball.tick
 
@@ -44,12 +49,22 @@ class LevelScreen < Engine::Screen
     ball.render
     brick_layout.render
     paddle.render
+    pause_indicator.render if $args.state.paused
   end
 
   private
 
   def pause_game
     $args.outputs.sounds << "app/assets/sounds/pause.wav" if Settings.enabled?(:sound)
+    $args.state.paused = !$args.state.paused
+  end
+
+  def level_menu
+    $args.outputs.sounds << "app/assets/sounds/pause.wav" if Settings.enabled?(:sound)
     $args.state.screen = :pause
+  end
+
+  def pause_indicator
+    @pause_indicator ||= Engine::Label.new(x: Viewport.xcenter, y: Viewport.ycenter + 32, text: "GAME PAUSED", alignment: 1, size: 32, color: ColorPalette.text, font: font_path("RocketRinder.ttf"))
   end
 end
