@@ -1,8 +1,6 @@
 class StartScreen < Engine::Screen
-  include Engine::Assets
-
   def initialize
-    play_song("start.ogg") if Settings.enabled?(:music)
+    play_song("start.ogg") if Engine::Settings.enabled?(:music)
   end
 
   def tick
@@ -24,7 +22,7 @@ class StartScreen < Engine::Screen
   def menu
     @menu ||= Menu.new do |menu|
       menu.add_option(text: "NEW GAME", selected: true) do
-        $args.outputs.sounds << "app/assets/sounds/start-game.wav" if Settings.enabled?(:sound)
+        play_sound("start-game.wav") if Engine::Settings.enabled?(:sound)
         $args.state.screen = :level
       end
       menu.add_option(text: "SETTINGS") do

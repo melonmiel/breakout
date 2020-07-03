@@ -9,7 +9,7 @@ class Ball < Engine::Model
     @y = POSITION_Y
     @width = DEFAULT_SIZE
     @height = DEFAULT_SIZE
-    @color = ColorPalette.foreground
+    @color = Colors.foreground
 
     @vertical_speed = DEFAULT_SPEED
     @horizontal_speed = DEFAULT_SPEED

@@ -1,4 +1,4 @@
-module Engine
+class Engine
   class Container < Model
     def contains?(solid)
       left.contains?(solid) &&

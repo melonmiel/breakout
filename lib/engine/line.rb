@@ -1,4 +1,4 @@
-module Engine
+class Engine
   # The parameters required for lines are:
   # 1. The initial point (x, y)
   # 2. The end point (x2, y2)

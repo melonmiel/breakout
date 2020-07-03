@@ -1,4 +1,4 @@
-module Engine
+class Engine
   module Input
     def on_key(key, &block)
       return unless $args.inputs.keyboard.key_down.send(key)

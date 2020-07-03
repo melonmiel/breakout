@@ -1,4 +1,5 @@
-require "lib/autoload.rb"
+require "lib/engine.rb"
+require "config/boot.rb"
 
 def tick(args)
   $args = args

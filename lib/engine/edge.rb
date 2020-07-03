@@ -1,4 +1,4 @@
-module Engine
+class Engine
   class Edge < Line
     class Left < Edge
       def contains?(solid)

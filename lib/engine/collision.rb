@@ -1,4 +1,4 @@
-module Engine
+class Engine
   module Collision
     def on_collision(source, destinations, &block)
       destinations.each do |destination|

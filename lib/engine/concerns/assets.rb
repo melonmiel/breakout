@@ -1,4 +1,4 @@
-module Engine
+class Engine
   module Assets
     def font_path(filename)
       "app/assets/fonts/#{filename}"

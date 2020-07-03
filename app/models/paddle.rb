@@ -7,7 +7,7 @@ class Paddle < Engine::Model
     @x = Viewport.xcenter - (width / 2)
     @y = POSITION_Y
     @height = DEFAULT_HEIGHT
-    @color = ColorPalette.foreground
+    @color = Colors.foreground
 
     @speed = DEFAULT_SPEED
   end
@@ -70,10 +70,10 @@ class Paddle < Engine::Model
 
   def width
     @width ||= begin
-      case Settings.get(:difficulty)
-      when :easy then 200
-      when :normal then 150
-      when :hard then 100
+      case Engine::Settings.get(:difficulty)
+      when "easy" then 200
+      when "normal" then 150
+      when "hard" then 100
       else
         150
       end

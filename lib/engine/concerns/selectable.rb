@@ -1,4 +1,4 @@
-module Engine
+class Engine
   module Selectable
     attr_accessor :selected, :on_select
 

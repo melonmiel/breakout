@@ -1,4 +1,4 @@
-class ColorPalette
+class Colors
   # https://coolors.co/ffab26-ff7926-ea2056-5016bc-2d11ad
   BRIGHT_YELLOW_CRAYOLA = [255, 171, 38].freeze
   PUMPKIN = [255, 121, 38].freeze
