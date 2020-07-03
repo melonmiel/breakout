@@ -1,4 +1,6 @@
 class Brick < Engine::Model
+  include Engine::Assets
+
   WIDTH = 75
   HEIGHT = 40
   PADDING = 5
