@@ -17,7 +17,9 @@ class PauseScreen < Engine::Screen
         play_sound("resume.wav") if Engine::Settings.enabled?(:sound)
         $args.state.screen = :level
       end
-      menu.add_option(text: "BACK TO MAIN MENU") { GameController.reset! }
+      menu.add_option(text: "BACK TO MAIN MENU") do
+        $args.state.screen = :start
+      end
       menu.add_option(text: "QUIT") { exit }
     end
   end

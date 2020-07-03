@@ -71,9 +71,9 @@ class Paddle < Engine::Model
   def width
     @width ||= begin
       case Engine::Settings.get(:difficulty)
-      when :easy then 200
-      when :normal then 150
-      when :hard then 100
+      when "easy" then 200
+      when "normal" then 150
+      when "hard" then 100
       else
         150
       end
