@@ -17,11 +17,11 @@ class Menu
   end
 
   def tick
-    on_key(:up) do
+    on_key_down(:up) do
       options.previous
       play_sound("select.wav") if Engine::Settings.enabled?(:sound)
     end
-    on_key(:down) do
+    on_key_down(:down) do
       options.next
       play_sound("select.wav") if Engine::Settings.enabled?(:sound)
     end

@@ -13,8 +13,8 @@ class LevelScreen < Engine::Screen
   end
 
   def tick
-    on_key(:space) { pause_game }
-    on_keys(:escape, :enter) { level_menu }
+    on_key_down(:space) { pause_game }
+    on_key_down(:escape, :enter) { level_menu }
 
     return if $args.state.paused
 

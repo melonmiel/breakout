@@ -1,4 +1,6 @@
 class Paddle < Engine::Model
+  include Engine::Input
+
   DEFAULT_HEIGHT = 10
   DEFAULT_SPEED = 10
   POSITION_Y = 15
@@ -14,7 +16,12 @@ class Paddle < Engine::Model
 
   def tick
     accelerate
-    move
+
+    on_key_down(:left, :a) { move_left }
+    on_key_held(:left, :a) { move_left }
+
+    on_key_down(:right, :d) { move_right }
+    on_key_held(:right, :d) { move_right }
   end
 
   def render
@@ -24,21 +31,15 @@ class Paddle < Engine::Model
   private
 
   def accelerate
-    if $args.inputs.keyboard.key_held.left || $args.inputs.keyboard.key_held.right
+    if key_held?(:a, :d, :left, :right)
       @speed += 0.5
     else
       @speed = DEFAULT_SPEED
     end
   end
 
-  def move
-    move_left
-    move_right
-  end
-
   def move_left
     return unless can_move_left?
-    return unless $args.inputs.keyboard.key_press(:left)
 
     @x -= @speed
     @x = left_edge if @x < left_edge
@@ -46,7 +47,6 @@ class Paddle < Engine::Model
 
   def move_right
     return unless can_move_right?
-    return unless $args.inputs.keyboard.key_press(:right)
 
     @x += @speed
     @x = right_edge if @x > right_edge
