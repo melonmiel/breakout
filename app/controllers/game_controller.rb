@@ -17,6 +17,8 @@ class GameController
         death_screen
       when :settings
         settings_screen
+      when :win
+        win_screen
       else
         $args.state.screen = :start
         start_screen
@@ -29,6 +31,7 @@ class GameController
       @pause_screen = nil
       @death_screen = nil
       @settings_screen = nil
+      @win_screen = nil
     end
 
     def reset_level!
@@ -53,6 +56,10 @@ class GameController
 
     def settings_screen
       @settings_screen ||= SettingsScreen.new
+    end
+
+    def win_screen
+      @win_screen ||= WinScreen.new
     end
   end
 end

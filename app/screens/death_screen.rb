@@ -20,7 +20,10 @@ class DeathScreen < Engine::Screen
         $args.state.screen = :level
         GameController.reset_level!
       end
-      menu.add_option(text: "BACK TO MAIN MENU") { GameController.reset! }
+      menu.add_option(text: "BACK TO MAIN MENU") do
+        GameController.reset!
+        $args.state.screen = :start
+      end
       menu.add_option(text: "QUIT") { exit }
     end
   end
