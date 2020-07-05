@@ -26,7 +26,7 @@ class Menu
     def tick
       return unless selected?
 
-      on_key(:enter, &on_enter)
+      on_key_down(:enter, &on_enter)
     end
 
     def color

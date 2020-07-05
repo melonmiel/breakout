@@ -24,8 +24,8 @@ class Menu
     def tick
       return unless selected?
 
-      on_key(:left, &cycle(-1))
-      on_keys(:right, :enter, &cycle(+1))
+      on_key_down(:left) { cycle(-1) }
+      on_key_down(:right, :enter) { cycle(+1) }
     end
 
     def render
@@ -42,16 +42,14 @@ class Menu
       args[:selected] ||= Engine::Settings.current?(setting, value)
       args[:ossilate] ||= false
       args[:on_select] ||= on_select || Proc.new { }
-      options << Option.new(args, &cycle)
+      options << Option.new(args) { cycle(+1) }
     end
 
     def cycle(offset = +1)
-      Proc.new do
-        options.cycle(offset)
-        Engine::Settings.set!(setting, options.current.value)
-        play_sound("select.wav") if Engine::Settings.enabled?(:sound)
-        options.current.on_select.call
-      end
+      options.cycle(offset)
+      Engine::Settings.set!(setting, options.current.value)
+      play_sound("select.wav") if Engine::Settings.enabled?(:sound)
+      options.current&.on_select&.call
     end
 
     def container
