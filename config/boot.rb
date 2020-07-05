@@ -18,6 +18,7 @@ Engine.autoload do
   require "app/screens/pause_screen.rb"
   require "app/screens/settings_screen.rb"
   require "app/screens/start_screen.rb"
+  require "app/screens/win_screen.rb"
 end
 
 Engine.configure do |config|

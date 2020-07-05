@@ -1,21 +1,24 @@
-class PauseScreen < Engine::Screen
+class WinScreen < Engine::Screen
   def tick
     menu.tick
   end
 
   def render
     BackgroundLayer.render
-    game_title.render
+    win_label.render
     menu.render
   end
 
-  private
+  def win_label
+    @win_label ||= Header.new(text: "YOU WON!")
+  end
 
   def menu
     @menu ||= Menu.new do |menu|
-      menu.add_option(text: "RESUME") do
+      menu.add_option(text: "NEW GAME") do
         play_sound("resume.wav") if Engine::Settings.enabled?(:sound)
         $args.state.screen = :level
+        GameController.reset_level!
       end
       menu.add_option(text: "BACK TO MAIN MENU") do
         GameController.reset!
@@ -23,9 +26,5 @@ class PauseScreen < Engine::Screen
       end
       menu.add_option(text: "QUIT") { exit }
     end
-  end
-
-  def game_title
-    @game_title ||= Header.new(text: "BREAKOUT")
   end
 end

@@ -25,6 +25,10 @@ class BrickLayout < Engine::Model
     end
   end
 
+  def empty?
+    bricks.empty?
+  end
+
   def colors
     [
       Colors.magenta,

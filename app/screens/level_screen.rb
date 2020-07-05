@@ -21,6 +21,8 @@ class LevelScreen < Engine::Screen
     paddle.tick
     ball.tick
 
+    $args.state.screen = :win if brick_layout.empty?
+
     on_collision(ball.next_ball, [paddle]) do
       ball.bounce_off(paddle)
     end
