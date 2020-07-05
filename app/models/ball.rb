@@ -1,6 +1,6 @@
 class Ball < Engine::Model
   DEFAULT_SIZE = 10
-  DEFAULT_SPEED = 10
+  DEFAULT_SPEED = 9
   POSITION_Y = 25
   RANDOMNESS = 0.1
 
