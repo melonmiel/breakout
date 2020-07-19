@@ -3,6 +3,12 @@
 # TODO: Ensure instances entiring the list
 #  respond to `selected?`
 class List < Array
+
+  def initialize(*items)
+    items.each { |item| self << item }
+    first.select! if length > 0
+  end
+
   def previous
     cycle(-1)
   end
