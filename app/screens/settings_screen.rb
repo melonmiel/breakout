@@ -1,6 +1,4 @@
 class SettingsScreen < Engine::Screen
-  include Engine::Assets
-
   def tick
     menu.tick
   end
@@ -37,7 +35,7 @@ class SettingsScreen < Engine::Screen
         select.add_option("hard", text: "Hard", color: Colors.red)
       end
       menu.add_option(text: "BACK") do
-        $args.state.screen = $args.state.back
+        controller.back
       end
     end
   end
