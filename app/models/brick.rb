@@ -20,14 +20,13 @@ class Brick < Engine::Model
 
   def explode!
     @exploded = true
+    play_sound("blip.wav") if Engine::Settings.enabled?(:sound)
   end
 
   def render
-    if exploded?
-      play_sound("blip.wav") if Engine::Settings.enabled?(:sound)
-    else
-      $args.outputs.solids << [x, y, width, height, *color]
-      $args.outputs.borders << [x, y, width, height, *border]
-    end
+    return if exploded?
+
+    $args.outputs.solids << [x, y, width, height, *color]
+    $args.outputs.borders << [x, y, width, height, *border]
   end
 end
