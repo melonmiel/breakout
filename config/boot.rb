@@ -1,5 +1,4 @@
 require "lib/engine.rb"
-require "config/colors.rb"
 
 Engine.autoload do
   require "app/controllers/game_controller.rb"
@@ -21,18 +20,6 @@ Engine.autoload do
   require "app/screens/win_screen.rb"
 end
 
-Engine.configure do |config|
-  # Metadata
-  config.title = "Breakout"
-
-  # Initializes default game settings
-  config.settings do |settings|
-    settings.sound = true
-    settings.music = true
-    settings.difficulty = "normal"
-  end
-
-  # Initializes any state you want the game to start with
-  # FIXME: Must be declared after `settings` to overwrite loaded state
-  config.screen = :start
-end
+require "config/colors.rb"
+require "config/settings.rb"
+require "config/scenes.rb"
