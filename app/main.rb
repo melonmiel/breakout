@@ -2,8 +2,7 @@ require "lib/engine.rb"
 require "config/boot.rb"
 
 def tick(args)
-  $args = args
-  GameController.tick
+  Engine::Game.run!(args)
 
   # TODO: Work with environment variables
   # TODO: Display only if developping
