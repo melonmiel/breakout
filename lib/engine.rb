@@ -1,4 +1,6 @@
 class Engine
+  class Error < StandardError; end
+
   class << self
     # Useful to require your game files
     # Ensures Engine is loaded before the game
@@ -71,6 +73,8 @@ require "lib/engine/concerns/assets.rb"
 require "lib/engine/concerns/selectable.rb"
 
 # Core Objects
+require "lib/engine/controller.rb"
+require "lib/engine/game.rb"
 require "lib/engine/label.rb"
 require "lib/engine/line.rb"
 require "lib/engine/model.rb"
