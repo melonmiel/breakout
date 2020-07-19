@@ -1,8 +1,4 @@
-class StartScreen < Engine::Screen
-  def initialize
-    play_song("start.ogg") if Engine::Settings.enabled?(:music)
-  end
-
+class MainMenuScreen < Engine::Screen
   def tick
     menu.tick
   end
@@ -23,13 +19,14 @@ class StartScreen < Engine::Screen
     @menu ||= Menu.new do |menu|
       menu.add_option(text: "NEW GAME", selected: true) do
         play_sound("start-game.wav") if Engine::Settings.enabled?(:sound)
-        $args.state.screen = :level
+        controller.play
       end
       menu.add_option(text: "SETTINGS") do
-        $args.state.back = :start
-        $args.state.screen = :settings
+        controller.settings
       end
-      menu.add_option(text: "QUIT") { exit }
+      menu.add_option(text: "QUIT") do
+        controller.quit
+      end
     end
   end
 end
