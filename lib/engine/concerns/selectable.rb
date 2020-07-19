@@ -4,10 +4,12 @@ class Engine
 
     def select!
       @selected = true
+      self
     end
 
     def unselect!
       @selected = false
+      self
     end
 
     def selected?
