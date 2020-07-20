@@ -6,5 +6,5 @@ def tick(args)
 
   # TODO: Work with environment variables
   # TODO: Display only if developping
-  $args.outputs.labels << [10, 710, args.gtk.current_framerate, 255, 255, 255]
+  $args.outputs.labels << [10, 710, args.gtk.current_framerate&.to_i, 255, 255, 255]
 end
