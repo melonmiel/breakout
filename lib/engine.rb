@@ -79,6 +79,7 @@ require "lib/engine/label.rb"
 require "lib/engine/line.rb"
 require "lib/engine/model.rb"
 require "lib/engine/screen.rb"
+require "lib/engine/sprite.rb"
 
 # Helpers
 require "lib/engine/container.rb"
