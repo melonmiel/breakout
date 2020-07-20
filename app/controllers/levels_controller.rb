@@ -3,7 +3,9 @@ class LevelsController < Engine::Controller
 
   def initialize
     @levels = List.new(Level01.new, Level02.new, Level03.new, Level04.new)
+  end
 
+  def boot
     play_song("level.ogg") if Engine::Settings.enabled?(:music)
     $args.state.paused = false
     play

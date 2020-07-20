@@ -9,6 +9,6 @@ class Engine
       @controller = controller
     end
 
-    def setup(**args); end
+    def boot(**args); end
   end
 end

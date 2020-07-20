@@ -3,16 +3,16 @@ class LevelScreen < Engine::Screen
 
   attr_accessor :ball, :playground, :statistics, :paddle, :level, :score
 
-  def setup(level:)
-    @level = level
+  def boot(level:)
     @playground = Engine::Container.new(x: 0, y: 0, width: 1280, height: 660, color: Colors.background)
     @statistics = Engine::Container.new(x: 0, y: 660, width: 1280, height: 60, color: Colors.background)
+    @level = level
     @ball = Ball.new
     @paddle = Paddle.new
     @score = Score.new
 
-    @level.setup(playground)
-    @score.setup(statistics)
+    @level.boot(container: playground)
+    @score.boot(container: statistics)
   end
 
   def tick

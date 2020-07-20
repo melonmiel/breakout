@@ -8,7 +8,7 @@ class Score
     @label = Engine::Label.new(text: padded_score, size: 6, alignment: 0, color: Colors.foreground, font: font_path("VerminVibes1989Regular.ttf"))
   end
 
-  def setup(container)
+  def boot(container:)
     @container = container
     label.x = container.x + 20
     label.y = container.top.y - 20

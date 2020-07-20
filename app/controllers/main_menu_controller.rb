@@ -1,5 +1,5 @@
 class MainMenuController < Engine::Controller
-  def initialize
+  def boot
     paint(main_menu_screen)
     play_song("start.ogg") if Engine::Settings.enabled?(:music)
   end

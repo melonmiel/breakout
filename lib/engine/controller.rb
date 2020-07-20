@@ -5,6 +5,8 @@ class Engine
 
     attr_accessor :current_screen
 
+    def boot; end
+
     def tick
       current_screen.tick
     end
@@ -15,7 +17,7 @@ class Engine
 
     def paint(screen, *args)
       @current_screen = screen
-      @current_screen.setup(*args)
+      @current_screen.boot(*args)
       @current_screen
     end
   end

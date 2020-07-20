@@ -8,9 +8,6 @@ class Engine
     end
 
     def controller
-      # Defaults to first defined scene
-      @current_scene ||= scenes.keys.first
-
       scenes.fetch(@current_scene) do
         raise Engine::Error, "I don't know how to render this scene '#{current_scene}'"
       end
@@ -24,10 +21,13 @@ class Engine
       # Setup scenes & routing
       def configure(&block)
         yield(instance)
+        # Defaults to first defined scene
+        render(instance.scenes.keys.first)
       end
 
       def render(scene)
         instance.current_scene = scene
+        instance.controller.boot
       end
 
       def run!(args)

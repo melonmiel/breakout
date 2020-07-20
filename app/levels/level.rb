@@ -6,22 +6,29 @@ class Level
   ROWS = 6
 
   attr_reader :bricks, :container
+  attr_reader :booted
+  alias_method :booted?, :booted
 
-  def setup(container)
+  def boot(container:)
     @container = container
     initialize_bricks
+    @booted = true
   end
 
   def tick
+    return unless booted?
+
     bricks.reject!(&:exploded?)
   end
 
   def render
+    return unless booted?
+
     bricks.each(&:render)
   end
 
   def completed?
-    bricks.empty?
+    booted? && bricks.empty?
   end
 
   def position_x(column)
