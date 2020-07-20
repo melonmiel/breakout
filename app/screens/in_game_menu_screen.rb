@@ -19,7 +19,7 @@ class InGameMenuScreen < Engine::Screen
 
   def menu
     @menu ||= Menu.new do |menu|
-      menu.add_option(text: "RESUME") { controller.resume }
+      menu.add_option(text: "RESUME") { controller.play }
       menu.add_option(text: "BACK TO MAIN MENU") { controller.back_to_main_menu }
       menu.add_option(text: "QUIT") { controller.quit }
     end
