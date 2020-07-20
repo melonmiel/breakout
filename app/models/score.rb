@@ -4,7 +4,6 @@ class Score
   attr_reader :label, :container
 
   def initialize
-    $args.state.score = 0
     @label = Engine::Label.new(text: padded_score, size: 6, alignment: 0, color: Colors.foreground, font: font_path("VerminVibes1989Regular.ttf"))
   end
 

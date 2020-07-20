@@ -8,6 +8,7 @@ class LevelsController < Engine::Controller
   def boot
     play_song("level.ogg") if Engine::Settings.enabled?(:music)
     $args.state.paused = false
+    $args.state.score = 0
     play
   end
 
