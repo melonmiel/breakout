@@ -2,11 +2,12 @@ class Engine
   class Model
     attr_accessor :x, :y, :width, :height, :color, :border, :alpha, :font
 
-    def initialize(x: nil, y: nil, width: nil, height: nil)
+    def initialize(x: nil, y: nil, width: nil, height: nil, color: nil)
       @x = x
       @y = y
       @width = width
       @height = height
+      @color = color
     end
 
     def alpha
@@ -47,6 +48,10 @@ class Engine
 
     def collides?(destination)
       GTK::Geometry.intersect_rect?(rect, destination.rect)
+    end
+
+    def render
+      $args.outputs.solids << [x, y, width, height, *color, alpha, font].compact
     end
   end
 end

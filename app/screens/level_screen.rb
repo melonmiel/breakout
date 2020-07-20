@@ -1,18 +1,24 @@
 class LevelScreen < Engine::Screen
   include Engine::Collision
 
-  attr_accessor :ball, :bricks, :paddle, :level
+  attr_accessor :ball, :playground, :statistics, :paddle, :level, :score
 
   def setup(level:)
     @level = level
+    @playground = Engine::Container.new(x: 0, y: 0, width: 1280, height: 660, color: Colors.background)
+    @statistics = Engine::Container.new(x: 0, y: 660, width: 1280, height: 60, color: Colors.background)
     @ball = Ball.new
     @paddle = Paddle.new
-    @bricks = @level.bricks
+    @score = Score.new
+
+    @level.setup(playground)
+    @score.setup(statistics)
   end
 
   def tick
     on_key_down(:escape, :enter) { controller.render_menu }
 
+    score.tick
     level.tick
     paddle.tick
     ball.tick
@@ -21,26 +27,29 @@ class LevelScreen < Engine::Screen
       ball.bounce_off(paddle)
     end
 
-    on_collision(ball.next_ball, bricks) do |brick|
+    on_collision(ball.next_ball, level.bricks) do |brick|
       brick.explode!
       ball.bounce_off(brick)
     end
 
-    on_collision(ball.next_ball, [Viewport.left, Viewport.right]) do
+    on_collision(ball.next_ball, [playground.left, playground.right]) do
       ball.bounce_horizontally
     end
 
-    on_collision(ball.next_ball, [Viewport.top]) do
+    on_collision(ball.next_ball, [playground.top]) do
       ball.bounce_vertically
     end
 
-    on_collision(ball, [Viewport.bottom]) do
+    on_collision(ball, [playground.bottom]) do
       controller.die
     end
   end
 
   def render
-    BackgroundLayer.render
+    statistics.render
+    score.render
+
+    playground.render
     level.render
     ball.render
     paddle.render

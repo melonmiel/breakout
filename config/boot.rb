@@ -17,6 +17,7 @@ Engine.autoload do
   require "app/models/menu/option.rb"
   require "app/models/menu/setting.rb"
   require "app/models/paddle.rb"
+  require "app/models/score.rb"
   require "app/screens/death_screen.rb"
   require "app/screens/in_game_menu_screen.rb"
   require "app/screens/level_screen.rb"

@@ -1,15 +1,14 @@
 # The one with vertical pillars
 class Level03 < Level
-  def paint
+  def initialize_bricks
+    @bricks = []
     COLUMNS.times.each do |column|
       # Skip 1 out of 3 columns
       next if column % 3 == 2
 
       ROWS.times.each do |row|
         color = colors[row] || Colors.green
-        x = left_edge + (column * Brick::WIDTH)
-        y = top_edge - (row * Brick::HEIGHT)
-        @bricks << Brick.new(x, y, color: color)
+        @bricks << Brick.new(position_x(column), position_y(row), color: color)
       end
     end
   end

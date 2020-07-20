@@ -23,7 +23,8 @@ class Level04 < Level
     super
   end
 
-  def paint
+  def initialize_bricks
+    @bricks = []
     COLUMNS.times.each do |column|
       ROWS.times.each do |row|
         # Skip 1 out of 2 bricks
@@ -32,9 +33,7 @@ class Level04 < Level
         color = colors.current
         colors.next
 
-        x = left_edge + (column * Brick::WIDTH)
-        y = top_edge - (row * Brick::HEIGHT)
-        @bricks << Brick.new(x, y, color: color.value)
+        @bricks << Brick.new(position_x(column), position_y(row), color: color.value)
       end
     end
   end
