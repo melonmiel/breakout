@@ -1,7 +1,7 @@
 class LevelScreen < Engine::Screen
   include Engine::Collision
 
-  attr_accessor :ball, :playground, :statistics, :paddle, :level, :score
+  attr_accessor :ball, :playground, :statistics, :paddle, :level, :score, :health
 
   def boot(level:)
     @playground = Engine::Container.new(x: 0, y: 0, width: 1280, height: 660, color: Colors.background)
@@ -10,15 +10,23 @@ class LevelScreen < Engine::Screen
     @ball = Ball.new
     @paddle = Paddle.new
     @score = Score.new
+    @health = Health.new
 
     @level.boot(container: playground)
     @score.boot(container: statistics)
+    @health.boot(container: statistics)
+  end
+
+  def reset
+    @ball = Ball.new
+    @paddle = Paddle.new
   end
 
   def tick
     on_key_down(:escape, :enter) { controller.render_menu }
 
     score.tick
+    health.tick
     level.tick
     paddle.tick
     ball.tick
@@ -48,6 +56,7 @@ class LevelScreen < Engine::Screen
   def render
     statistics.render
     score.render
+    health.render
 
     playground.render
     level.render

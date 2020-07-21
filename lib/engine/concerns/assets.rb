@@ -12,6 +12,10 @@ class Engine
       "app/assets/songs/#{filename}"
     end
 
+    def sprite_path(filename)
+      "app/assets/sprites/#{filename}"
+    end
+
     def play_sound(sound)
       $args.outputs.sounds << sound_path(sound)
     end

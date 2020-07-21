@@ -15,10 +15,8 @@ class Engine
       current_screen.render
     end
 
-    def paint(screen, *args)
+    def paint(screen)
       @current_screen = screen
-      @current_screen.boot(*args)
-      @current_screen
     end
   end
 end

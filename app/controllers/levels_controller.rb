@@ -8,8 +8,7 @@ class LevelsController < Engine::Controller
   def boot
     play_song("level.ogg") if Engine::Settings.enabled?(:music)
     $args.state.paused = false
-    $args.state.score = 0
-    play
+    reset
   end
 
   def tick
@@ -27,8 +26,9 @@ class LevelsController < Engine::Controller
     pause_indicator.render if paused?
   end
 
-  def play
-    paint(level_screen, level: current_level)
+  def play(reset: false)
+    level_screen.reset if reset
+    paint(level_screen)
   end
 
   def resume_game
@@ -42,8 +42,8 @@ class LevelsController < Engine::Controller
   end
 
   def reset
-    @level_screen = LevelScreen.new(self)
-    paint(@level_screen, level: current_level)
+    level_screen.boot(level: current_level)
+    paint(level_screen)
   end
 
   def quit
@@ -52,6 +52,7 @@ class LevelsController < Engine::Controller
 
   def complete_level!
     levels.next
+    level_screen.boot(level: current_level)
     paint(win_screen)
   end
 
@@ -60,7 +61,14 @@ class LevelsController < Engine::Controller
   end
 
   def die
-    paint(death_screen)
+    $args.state.health -= 1
+    if dead?
+      $args.state.score = 0
+      $args.state.health = 3
+      paint(death_screen)
+    else
+      play(reset: true)
+    end
   end
 
   def render_menu
@@ -88,6 +96,10 @@ class LevelsController < Engine::Controller
 
   def win_screen
     @win_screen ||= WinScreen.new(self)
+  end
+
+  def dead?
+    $args.state.health < 1
   end
 
   def paused?
