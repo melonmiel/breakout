@@ -30,3 +30,4 @@ end
 require "config/colors.rb"
 require "config/settings.rb"
 require "config/scenes.rb"
+require "config/initialize.rb"
