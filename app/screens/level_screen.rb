@@ -28,8 +28,11 @@ class LevelScreen < Engine::Screen
     @started = false
   end
 
+  def start
+    @started = true
+  end
+
   def tick
-    on_key_down(:space) { @started = true }
     on_key_down(:escape, :enter) { controller.render_menu }
 
     move_paddle

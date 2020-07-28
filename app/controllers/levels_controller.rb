@@ -15,6 +15,8 @@ class LevelsController < Engine::Controller
     complete_level! if current_level.completed?
 
     on_key_down(:space) do
+      return level_screen.start unless paused? || level_screen.started?
+
       paused? ? resume_game : pause_game
     end
 
