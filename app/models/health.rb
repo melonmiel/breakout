@@ -16,12 +16,9 @@ class Health
     label.y = container.top.y - 20
   end
 
-  def tick
-    label.text = lives_left
-  end
-
   def render
     icon.render if icon.valid?
+    label.text = lives_left
     label.render
   end
 

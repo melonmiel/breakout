@@ -15,15 +15,10 @@ class Level
     @booted = true
   end
 
-  def tick
-    return unless booted?
-
-    bricks.reject!(&:exploded?)
-  end
-
   def render
     return unless booted?
 
+    bricks.reject!(&:exploded?)
     bricks.each(&:render)
   end
 

@@ -14,28 +14,16 @@ class Paddle < Engine::Model
     @speed = DEFAULT_SPEED
   end
 
-  def tick
-    accelerate
-
-    on_key_down(:left, :a) { move_left }
-    on_key_held(:left, :a) { move_left }
-
-    on_key_down(:right, :d) { move_right }
-    on_key_held(:right, :d) { move_right }
-  end
-
   def render
     $args.outputs.solids << [x, y, width, height, *color]
   end
 
-  private
-
   def accelerate
-    if key_held?(:a, :d, :left, :right)
-      @speed += 0.5
-    else
-      @speed = DEFAULT_SPEED
-    end
+    @speed += 0.5
+  end
+
+  def reset_acceleration
+    @speed = DEFAULT_SPEED
   end
 
   def move_left
@@ -51,6 +39,12 @@ class Paddle < Engine::Model
     @x += @speed
     @x = right_edge if @x > right_edge
   end
+
+  def center
+    x + (width / 2)
+  end
+
+  private
 
   def can_move_left?
     @x > left_edge

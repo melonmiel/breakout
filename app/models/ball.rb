@@ -15,8 +15,9 @@ class Ball < Engine::Model
     @horizontal_speed = starting_speed
   end
 
-  def tick
-    travel!
+  def travel!
+    travel_horizontally!
+    travel_vertically!
   end
 
   def render
@@ -41,11 +42,6 @@ class Ball < Engine::Model
   end
 
   private
-
-  def travel!
-    travel_horizontally!
-    travel_vertically!
-  end
 
   def travel_horizontally!
     @x += @horizontal_speed

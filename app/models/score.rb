@@ -13,11 +13,8 @@ class Score
     label.y = container.top.y - 20
   end
 
-  def tick
-    label.text = padded_score
-  end
-
   def render
+    label.text = padded_score
     label.render
   end
 
