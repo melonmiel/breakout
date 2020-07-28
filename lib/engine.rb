@@ -45,6 +45,8 @@ class Engine
       if state = $gtk.deserialize_state(state_filename)
         $gtk.args.state = state
       end
+    rescue SyntaxError => ex
+      puts ex.message
     end
 
     def state_filename
