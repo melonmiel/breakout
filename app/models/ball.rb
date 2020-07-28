@@ -11,8 +11,8 @@ class Ball < Engine::Model
     @height = DEFAULT_SIZE
     @color = Colors.foreground
 
-    @vertical_speed = DEFAULT_SPEED
-    @horizontal_speed = DEFAULT_SPEED
+    @vertical_speed = DEFAULT_SPEED * angle_randomness_factor
+    @horizontal_speed = starting_speed
   end
 
   def tick
@@ -70,5 +70,9 @@ class Ball < Engine::Model
     factor = rand * RANDOMNESS
     factor = -factor if factor > (RANDOMNESS / 2)
     1 + factor
+  end
+
+  def starting_speed
+    rand * DEFAULT_SPEED * (rand > 0.5 ? 1 : -1)
   end
 end
