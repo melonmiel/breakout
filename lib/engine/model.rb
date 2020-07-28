@@ -15,7 +15,7 @@ class Engine
     end
 
     def font
-      @font || "app/assets/fonts/VerminVibes1989Regular.ttf"
+      @font || "font.ttf"
     end
 
     def rect
