@@ -4,7 +4,7 @@ class Score
   attr_reader :label, :container
 
   def initialize
-    @label = Engine::Label.new(text: padded_score, size: 6, alignment: 0, color: Colors.foreground, font: font_path("VerminVibes1989Regular.ttf"))
+    @label = Engine::Label.new(text: padded_score, size: 6, alignment: 0, color: Colors.background, font: font_path("VerminVibes1989Regular.ttf"))
   end
 
   def boot(container:)

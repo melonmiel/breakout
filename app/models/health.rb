@@ -5,7 +5,7 @@ class Health
 
   def initialize
     @icon = Engine::Sprite.new(width: 32, height: 32, sprite_path: sprite_path("heart.png"))
-    @label = Engine::Label.new(text: lives_left, size: 6, alignment: 2, color: Colors.foreground, font: font_path("VerminVibes1989Regular.ttf"))
+    @label = Engine::Label.new(text: lives_left, size: 6, alignment: 2, color: Colors.background, font: font_path("VerminVibes1989Regular.ttf"))
   end
 
   def boot(container:)
