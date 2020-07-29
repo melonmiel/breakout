@@ -75,6 +75,7 @@ require "lib/engine/collision.rb"
 # Modules
 require "lib/engine/concerns/assets.rb"
 require "lib/engine/concerns/selectable.rb"
+require "lib/engine/concerns/serializable.rb"
 
 # Core Objects
 require "lib/engine/controller.rb"

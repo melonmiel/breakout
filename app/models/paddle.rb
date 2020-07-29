@@ -5,6 +5,8 @@ class Paddle < Engine::Model
   DEFAULT_SPEED = 10
   POSITION_Y = 15
 
+  attr_reader :speed
+
   def initialize
     @x = Viewport.xcenter - (width / 2)
     @y = POSITION_Y
@@ -12,6 +14,10 @@ class Paddle < Engine::Model
     @color = Colors.foreground
 
     @speed = DEFAULT_SPEED
+  end
+
+  def serialize
+    super.merge(speed: speed)
   end
 
   def render
@@ -30,14 +36,14 @@ class Paddle < Engine::Model
     return unless can_move_left?
 
     @x -= @speed
-    @x = left_edge if @x < left_edge
+    @x = left_edge if @x <= left_edge
   end
 
   def move_right
     return unless can_move_right?
 
     @x += @speed
-    @x = right_edge if @x > right_edge
+    @x = right_edge if @x >= right_edge
   end
 
   def center
@@ -51,7 +57,7 @@ class Paddle < Engine::Model
   end
 
   def can_move_right?
-    @x < right_edge
+    @x + width < right_edge
   end
 
   def left_edge
@@ -59,7 +65,7 @@ class Paddle < Engine::Model
   end
 
   def right_edge
-    Viewport.width - width
+    Viewport.width
   end
 
   def width

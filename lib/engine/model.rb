@@ -1,13 +1,29 @@
 class Engine
   class Model
+    include Serializable
+
     attr_accessor :x, :y, :width, :height, :color, :border, :alpha, :font
 
-    def initialize(x: nil, y: nil, width: nil, height: nil, color: nil)
+    def initialize(x: nil, y: nil, width: nil, height: nil, color: nil, border: nil)
       @x = x
       @y = y
       @width = width
       @height = height
       @color = color
+      @border = border
+    end
+
+    def serialize
+      {
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        color: color,
+        border: border,
+        alpha: alpha,
+        font: font,
+      }
     end
 
     def alpha

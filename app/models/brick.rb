@@ -18,6 +18,10 @@ class Brick < Engine::Model
     @exploded = false
   end
 
+  def serialize
+    super.merge(exploded: exploded)
+  end
+
   def explode!
     @exploded = true
     $args.state.score += 100

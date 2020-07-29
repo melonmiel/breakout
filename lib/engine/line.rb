@@ -7,6 +7,8 @@ class Engine
   # An example of creating a line would be:
   # args.outputs.lines << [100, 100, 300, 300, 255, 0, 255, 255]
   class Line
+    include Serializable
+
     attr_accessor :x, :y, :x2, :y2, :color, :alpha
 
     def initialize(args = {})
@@ -16,6 +18,21 @@ class Engine
       @y2 = args.fetch(:y2)
       @color = args.fetch(:color, nil)
       @alpha = args.fetch(:alpha, nil)
+    end
+
+    def serialize
+      {
+        x: x,
+        y: y,
+        x2: x2,
+        y2: y2,
+        color: color,
+        alpha: alpha,
+      }
+    end
+
+    def rect
+      GTK::Geometry.line_rect(self)
     end
 
     def render
