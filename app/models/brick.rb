@@ -31,7 +31,6 @@ class Brick < Engine::Model
   def render
     return if exploded?
 
-    $args.outputs.solids << [x, y, width, height, *color]
-    $args.outputs.borders << [x, y, width, height, *border]
+    super
   end
 end

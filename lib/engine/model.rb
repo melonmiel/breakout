@@ -68,6 +68,7 @@ class Engine
 
     def render
       $args.outputs.solids << [x, y, width, height, *color, alpha, font].compact
+      $args.outputs.borders << [x, y, width, height, *border] if border
     end
   end
 end
