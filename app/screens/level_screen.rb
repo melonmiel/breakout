@@ -35,9 +35,14 @@ class LevelScreen < Engine::Screen
   def tick
     on_key_down(:escape, :enter) { controller.render_menu }
 
-    move_paddle
-    started? ? ball.travel! : sticky_ball
-    handle_collisions
+    if started?
+      move_paddle
+      ball.travel!
+      handle_collisions
+    else
+      move_paddle
+      sticky_ball
+    end
   end
 
   def render
@@ -52,24 +57,24 @@ class LevelScreen < Engine::Screen
   end
 
   def handle_collisions
-    on_collision(ball.next_ball, [paddle]) do
-      ball.bounce_off(paddle)
+    on_collision(ball, paddle) do
+      ball.bounce(direction: :vertical)
     end
 
-    on_collision(ball.next_ball, level.bricks) do |brick|
-      brick.explode!
+    on_collision(ball, *level.bricks, trajectory: ball.trajectory) do |brick|
       ball.bounce_off(brick)
+      brick.explode!
     end
 
-    on_collision(ball.next_ball, [playground.left, playground.right]) do
-      ball.bounce_horizontally
+    on_collision(ball, playground.left, playground.right) do
+      ball.bounce(direction: :horizontal)
     end
 
-    on_collision(ball.next_ball, [playground.top]) do
-      ball.bounce_vertically
+    on_collision(ball, playground.top) do
+      ball.bounce(direction: :vertical)
     end
 
-    on_collision(ball, [playground.bottom]) do
+    on_collision(ball, playground.bottom) do
       controller.die
     end
   end

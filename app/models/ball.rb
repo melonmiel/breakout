@@ -1,74 +1,124 @@
 class Ball < Engine::Model
   DEFAULT_SIZE = 10
-  DEFAULT_SPEED = 9
   POSITION_Y = 25
-  RANDOMNESS = 0.2
+  ANGLE_TILT = 5
+  SPEED_INCREMENT = 0.05
 
-  def initialize
-    @x = Viewport.xcenter
-    @y = POSITION_Y
+  STARTING_SPEEDS = {
+    easy: 7.5,
+    normal: 8.25,
+    difficult: 10,
+  }
+
+  MAXIMUM_SPEEDS = {
+    easy: 10,
+    normal: 12,
+    difficult: 10,
+  }
+
+  attr_accessor :angle, :speed, :x_velocity, :y_velocity
+
+  def initialize(x: nil, y: nil)
+    @x = x || Viewport.xcenter
+    @y = y || POSITION_Y
     @width = DEFAULT_SIZE
     @height = DEFAULT_SIZE
     @color = Colors.foreground
 
-    @vertical_speed = DEFAULT_SPEED * angle_randomness_factor
-    @horizontal_speed = starting_speed
+    @speed = starting_speed
+    @x_velocity = 1
+    @y_velocity = [1, -1].sample # Random start left or right
+    @angle = 45
+  end
+
+  def serialize
+    super.merge(
+      angle: angle,
+      speed: speed,
+      x_velocity: x_velocity,
+      y_velocity: y_velocity,
+    )
   end
 
   def travel!
-    travel_horizontally!
-    travel_vertically!
+    @x = next_x
+    @y = next_y
   end
 
-  def render
-    $args.outputs.solids << [x, y, width, height, *color]
+  def bounce_off(solid)
+    case closest_side(solid)
+    when :left, :right then bounce(direction: :horizontal)
+    when :top, :bottom then bounce(direction: :vertical)
+    end
   end
 
-  def bounce_off(object)
-    bounce_horizontally if self.clone.travel_horizontally!.intersect_with?(object)
-    bounce_vertically if self.clone.travel_vertically!.intersect_with?(object)
+  def bounce(direction: nil)
+    increase_speed
+    flip_velocity(direction)
+    tilt_angle
   end
 
-  def next_ball
-    self.clone.travel!
-  end
-
-  def bounce_horizontally
-    @horizontal_speed = reverse(@horizontal_speed)
-  end
-
-  def bounce_vertically
-    @vertical_speed = reverse(@vertical_speed)
+  def trajectory
+    Engine::Line.new(x: x, y: y, x2: next_x, y2: next_y)
   end
 
   private
 
-  def travel_horizontally!
-    @x += @horizontal_speed
-    self
+  def increase_speed
+    return if speed >= maximum_speed
+
+    @speed += SPEED_INCREMENT
   end
 
-  def travel_vertically!
-    @y += @vertical_speed
-    self
+  def flip_velocity(direction)
+    case direction
+    when :horizontal
+      @x_velocity = -x_velocity
+    when :vertical
+      @y_velocity = -y_velocity
+    else
+      raise ArgumentError, "Wrong direction '#{direction}'"
+    end
   end
 
-  def reverse(speed)
-    speed = speed > 0 ? -DEFAULT_SPEED : DEFAULT_SPEED
-    speed * angle_randomness_factor
+  def tilt_angle
+    factor = (0..ANGLE_TILT).sample
+    factor = -factor if [true, false].sample
+    @angle = @angle + factor
+    @angle = 45 if @angle > 75 || @angle < 15
+    @angle
   end
 
-  def intersect_with?(object)
-    GTK::Geometry.intersect_rect?(rect, object.rect)
+  def next_x
+    @x + Math.cos(angle.to_radians) * x_velocity * speed
   end
 
-  def angle_randomness_factor
-    factor = rand * RANDOMNESS
-    factor = -factor if factor > (RANDOMNESS / 2)
-    1 + factor
+  def next_y
+    @y + Math.sin(angle.to_radians) * y_velocity * speed
+  end
+
+  def closest_side(solid)
+    average_x = (x + next_x)/2
+    average_y = (y + next_y)/2
+    distances = {
+      left: (average_x - solid.left).abs,
+      right: (average_x - solid.right).abs,
+      top: (average_y - solid.top).abs,
+      bottom: (average_y - solid.bottom).abs,
+    }
+    distances = distances.sort_by { |_side, distance| distance }.to_h
+    distances.keys.first
   end
 
   def starting_speed
-    rand * DEFAULT_SPEED * (rand > 0.5 ? 1 : -1)
+    STARTING_SPEEDS.fetch(difficulty, 8.25)
+  end
+
+  def maximum_speed
+    MAXIMUM_SPEEDS.fetch(difficulty, 12)
+  end
+
+  def difficulty
+    Engine::Settings.get(:difficulty).to_sym
   end
 end

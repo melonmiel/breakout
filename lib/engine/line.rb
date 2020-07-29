@@ -46,5 +46,9 @@ class Engine
     def height
       (y2-y).abs
     end
+
+    def collides?(destination)
+      GTK::Geometry.intersect_rect?(rect, destination.rect)
+    end
   end
 end

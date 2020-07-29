@@ -1,6 +1,6 @@
 class Engine
   module Collision
-    def on_collision(source, destinations, &block)
+    def on_collision(source, *destinations, &block)
       destinations.each do |destination|
         on_edge_collision(source, destination, &block) if destination.is_a?(Edge)
         on_solid_collision(source, destination, &block) if destination.is_a?(Model)
