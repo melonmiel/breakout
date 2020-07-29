@@ -11,9 +11,9 @@ class Ball < Engine::Model
   }
 
   MAXIMUM_SPEEDS = {
-    easy: 10,
-    normal: 12,
-    difficult: 10,
+    easy: 12,
+    normal: 15,
+    difficult: 18,
   }
 
   attr_accessor :angle, :speed, :x_velocity, :y_velocity
