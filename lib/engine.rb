@@ -63,8 +63,10 @@ class Engine
 end
 
 # Core Extensions
+require "lib/core_ext/array.rb"
 require "lib/core_ext/keyboard.rb"
 require "lib/core_ext/list.rb"
+require "lib/core_ext/range.rb"
 
 # Extensions
 require "lib/engine/input.rb"
