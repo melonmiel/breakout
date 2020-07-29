@@ -98,13 +98,11 @@ class Ball < Engine::Model
   end
 
   def closest_side(solid)
-    average_x = (x + next_x)/2
-    average_y = (y + next_y)/2
     distances = {
-      left: (average_x - solid.left).abs,
-      right: (average_x - solid.right).abs,
-      top: (average_y - solid.top).abs,
-      bottom: (average_y - solid.bottom).abs,
+      left: (x - solid.left).abs,
+      right: (x - solid.right).abs,
+      top: (y - solid.top).abs,
+      bottom: (y - solid.bottom).abs,
     }
     distances = distances.sort_by { |_side, distance| distance }.to_h
     distances.keys.first
