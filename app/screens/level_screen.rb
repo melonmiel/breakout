@@ -64,7 +64,7 @@ class LevelScreen < Engine::Screen
       ball.bounce(direction: :vertical)
     end
 
-    on_collision(ball, *level.bricks, trajectory: ball.trajectory) do |brick|
+    on_collision(ball, *level.bricks) do |brick|
       ball.bounce_off(brick)
       brick.explode!
       score_points
