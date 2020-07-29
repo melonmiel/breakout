@@ -1,6 +1,8 @@
 class LevelScreen < Engine::Screen
   include Engine::Collision
 
+  HEALTH_BONUS_THRESHOLD = 20
+
   # TODO: Move to state machine
   attr_accessor :started
   alias :started? :started
@@ -26,6 +28,7 @@ class LevelScreen < Engine::Screen
     @ball = Ball.new
     @paddle = Paddle.new
     @started = false
+    reset_consecutive_hits
   end
 
   def start
@@ -64,6 +67,8 @@ class LevelScreen < Engine::Screen
     on_collision(ball, *level.bricks, trajectory: ball.trajectory) do |brick|
       ball.bounce_off(brick)
       brick.explode!
+      score_points
+      award_health_bonus
     end
 
     on_collision(ball, playground.left, playground.right) do
@@ -95,6 +100,22 @@ class LevelScreen < Engine::Screen
     else
       paddle.reset_acceleration
     end
+  end
+
+  def score_points
+    $args.state.score += (10 * ball.speed).to_i
+  end
+
+  def award_health_bonus
+    $args.state.consecutive_hits += 1
+    if $args.state.consecutive_hits >= HEALTH_BONUS_THRESHOLD
+      reset_consecutive_hits
+      $args.state.health += 1
+    end
+  end
+
+  def reset_consecutive_hits
+    $args.state.consecutive_hits = 0
   end
 
   def sticky_ball

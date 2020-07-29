@@ -24,7 +24,6 @@ class Brick < Engine::Model
 
   def explode!
     @exploded = true
-    $args.state.score += 100
     play_sound("blip.wav") if Engine::Settings.enabled?(:sound)
   end
 
