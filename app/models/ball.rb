@@ -2,6 +2,7 @@ class Ball < Engine::Model
   DEFAULT_SIZE = 10
   POSITION_Y = 25
   ANGLE_TILT = 5
+  ANGLE_RANGE = 10..80
   SPEED_INCREMENT = 0.05
 
   STARTING_SPEEDS = {
@@ -26,9 +27,9 @@ class Ball < Engine::Model
     @color = Colors.foreground
 
     @speed = starting_speed
-    @x_velocity = 1
-    @y_velocity = [1, -1].sample # Random start left or right
-    @angle = 45
+    @x_velocity = [1, -1].sample # Random start left or right
+    @y_velocity = 1
+    @angle = ANGLE_RANGE.sample
   end
 
   def serialize
@@ -85,7 +86,7 @@ class Ball < Engine::Model
     factor = (0..ANGLE_TILT).sample
     factor = -factor if [true, false].sample
     @angle = @angle + factor
-    @angle = 45 if @angle > 75 || @angle < 15
+    @angle = 45 unless ANGLE_RANGE.include?(@angle)
     @angle
   end
 
