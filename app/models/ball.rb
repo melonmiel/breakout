@@ -99,12 +99,11 @@ class Ball < Engine::Model
   end
 
   def closest_side(solid)
-    distances = {
-      left: (x - solid.left).abs,
-      right: (x - solid.right).abs,
-      top: (y - solid.top).abs,
-      bottom: (y - solid.bottom).abs,
-    }
+    distances = { }
+    distances[:left] = (x - solid.left).abs if x_velocity > 0
+    distances[:right] = (x - solid.right).abs if x_velocity < 0
+    distances[:top] = (y - solid.top).abs if y_velocity < 0
+    distances[:bottom] = (y - solid.bottom).abs if y_velocity > 0
     distances = distances.sort_by { |_side, distance| distance }.to_h
     distances.keys.first
   end
