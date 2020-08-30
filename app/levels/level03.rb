@@ -13,6 +13,10 @@ class Level03 < Level
     end
   end
 
+  def title
+    "Pillars of Dooooooom"
+  end
+
   private
 
   def colors

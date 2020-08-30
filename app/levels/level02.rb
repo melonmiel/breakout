@@ -13,6 +13,10 @@ class Level02 < Level
     end
   end
 
+  def title
+    "The tranches"
+  end
+
   private
 
   def colors

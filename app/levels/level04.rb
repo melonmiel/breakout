@@ -37,4 +37,8 @@ class Level04 < Level
       end
     end
   end
+
+  def title
+    ["Just one more", "One last one", "Almost there", "I trust in you"].sample
+  end
 end

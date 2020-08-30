@@ -14,6 +14,7 @@ Engine.autoload do
   require "app/models/ball.rb"
   require "app/models/brick.rb"
   require "app/models/health.rb"
+  require "app/models/level_title.rb"
   require "app/models/menu.rb"
   require "app/models/menu/option.rb"
   require "app/models/menu/setting.rb"

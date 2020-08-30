@@ -2,7 +2,8 @@ class LevelsController < Engine::Controller
   attr_reader :levels
 
   def initialize
-    @levels = List.new(Level01.new, Level02.new, Level03.new, Level04.new)
+    # @levels = List.new(Level01.new, Level02.new, Level03.new, Level04.new)
+    @levels = List.new(Level04.new)
   end
 
   def boot

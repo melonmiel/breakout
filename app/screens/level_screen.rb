@@ -7,7 +7,7 @@ class LevelScreen < Engine::Screen
   attr_accessor :started
   alias :started? :started
 
-  attr_accessor :ball, :playground, :statistics, :paddle, :level, :score, :health
+  attr_accessor :ball, :playground, :statistics, :paddle, :level, :score, :health, :title
 
   def boot(level:)
     @playground = Engine::Container.new(x: 0, y: 0, width: 1280, height: 660, color: Colors.background)
@@ -17,11 +17,13 @@ class LevelScreen < Engine::Screen
     @paddle = Paddle.new
     @score = Score.new
     @health = Health.new
+    @title = LevelTitle.new(@level.title)
     @started = false
 
     @level.boot(container: playground)
     @score.boot(container: statistics)
     @health.boot(container: statistics)
+    @title.boot(container: statistics)
   end
 
   def reset
@@ -52,6 +54,7 @@ class LevelScreen < Engine::Screen
     statistics.render
     score.render
     health.render
+    title.render
 
     playground.render
     level.render

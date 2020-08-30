@@ -20,4 +20,8 @@ class Level01 < Level
       Colors.cyan(:primary),
     ]
   end
+
+  def title
+    "Warm up"
+  end
 end
